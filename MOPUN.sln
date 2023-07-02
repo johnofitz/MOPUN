@@ -5,6 +5,8 @@ VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MOPUN", "MOPUN\MOPUN.csproj", "{8AF8D7F1-E7CA-4C68-AC58-32184CF54DE2}"
 EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "frontend-mopun", "Frontend-MOPUN\frontend-mopun.esproj", "{3BD56EB2-EE1E-4615-8643-2BB5954386C9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,12 @@ Global
 		{8AF8D7F1-E7CA-4C68-AC58-32184CF54DE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8AF8D7F1-E7CA-4C68-AC58-32184CF54DE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8AF8D7F1-E7CA-4C68-AC58-32184CF54DE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BD56EB2-EE1E-4615-8643-2BB5954386C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BD56EB2-EE1E-4615-8643-2BB5954386C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BD56EB2-EE1E-4615-8643-2BB5954386C9}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{3BD56EB2-EE1E-4615-8643-2BB5954386C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BD56EB2-EE1E-4615-8643-2BB5954386C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BD56EB2-EE1E-4615-8643-2BB5954386C9}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
