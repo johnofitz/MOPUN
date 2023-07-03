@@ -46,6 +46,7 @@ function AccountTable() {
                 </tr>
             </thead>
             <tbody>
+
                 {/* Map over the accounts and render each account as a table row like for loop */}
                 {accounts.map((account) => (
                     <tr key={account.id}>
