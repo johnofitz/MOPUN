@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using MOPUN.Models;
 
 namespace MOPUN.Data
 {
-    public class MOPUNDB : DbContext
+    public class MOPUNDB : IdentityUserContext<IdentityUser>
     {
         public MOPUNDB(DbContextOptions<MOPUNDB> options)
             : base(options)
