@@ -54,7 +54,11 @@ const Login = (props: any) => {
         }
       }
     } catch (error: any) {
-      if (error.response && error.response.data && error.response.data.message) {
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
         setMessage(error.response.data.message);
       } else {
         setMessage(error.message || error.toString());
@@ -68,12 +72,11 @@ const Login = (props: any) => {
     return <Navigate to={redirect} />;
   }
 
-
   return (
     <div className="col-md-12">
       <div className="card card-container">
         <img
-          src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+          src={require("../test/irishPoll.png")}
           alt="profile-img"
           className="profile-img-card"
         />
@@ -105,7 +108,11 @@ const Login = (props: any) => {
             </div>
 
             <div className="form-group">
-              <button type="submit" className="btn btn-primary btn-block" disabled={loading}>
+              <button
+                type="submit"
+                className="btn btn-primary btn-block"
+                disabled={loading}
+              >
                 {loading && (
                   <span className="spinner-border spinner-border-sm"></span>
                 )}

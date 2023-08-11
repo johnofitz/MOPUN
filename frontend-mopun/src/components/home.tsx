@@ -41,6 +41,10 @@ export default class Home extends Component<Props, State> {
         <header className="jumbotron">
           <h3>{this.state.content}</h3>
         </header>
+        <body>
+        <img src="/frontend-mopun/public/irishPoll.png"/>
+        </body>
+       
       </div>
     );
   }
