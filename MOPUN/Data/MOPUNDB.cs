@@ -5,7 +5,7 @@ using MOPUN.Models;
 
 namespace MOPUN.Data
 {
-    public class MOPUNDB : IdentityUserContext<IdentityUser>
+    public class MOPUNDB : DbContext
     {
         public MOPUNDB(DbContextOptions<MOPUNDB> options)
             : base(options)
