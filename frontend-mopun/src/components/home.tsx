@@ -1,51 +1,21 @@
-import { Component } from "react";
 
-import UserService from "../services/UserService";
-
-type Props = {};
-
-type State = {
-  content: string;
-}
-
-export default class Home extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-
-    this.state = {
-      content: ""
-    };
-  }
-
-  componentDidMount() {
-    UserService.getPublicContent().then(
-      response => {
-        this.setState({
-          content: response.data
-        });
-      },
-      error => {
-        this.setState({
-          content:
-            (error.response && error.response.data) ||
-            error.message ||
-            error.toString()
-        });
-      }
-    );
-  }
-
-  render() {
-    return (
-      <div className="container">
-        <header className="jumbotron">
-          <h3>{this.state.content}</h3>
-        </header>
-        <body>
-        <img src="/frontend-mopun/public/irishPoll.png"/>
-        </body>
-       
+const Home: React.FC = () => {
+  
+  return (
+    <div>
+      <h1>Welcome to the Dashboard</h1>
+      <div className="dashboard-content">
+        <div className="widget">
+          <h2>Widget 1</h2>
+          {/* Placeholder content */}
+        </div>
+        <div className="widget">
+          <h2>Widget 2</h2>
+          {/* Placeholder content */}
+        </div>
+        {/* Add more widgets as needed */}
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
+export default Home;
