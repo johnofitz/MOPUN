@@ -15,14 +15,13 @@ const login = async (username: string, password: string) => {
 
     // If a token is present in the response data, store user information in local storage
     if (response.data.token) {
-      localStorage.setItem("user", JSON.stringify(response.data));
+      sessionStorage.setItem("user", JSON.stringify(response.data));
     }
 
     // Return the response data
     return response.data;
   } catch (error) {
-    // If an error occurs, log the error and return null
-    console.error("Error during login:", error);
+
     return null;
   }
 };
@@ -30,13 +29,13 @@ const login = async (username: string, password: string) => {
 // Function to perform user logout
 const logout = () => {
   // Remove the user information from local storage
-  localStorage.removeItem("user");
+  sessionStorage.removeItem("user");
 };
 
 // Function to retrieve the current logged-in user
 const getCurrentUser = () => {
   // Retrieve user information from local storage
-  const userStr = localStorage.getItem("user");
+  const userStr = sessionStorage.getItem("user");
 
   // If user information exists, parse and return it
   if (userStr) return JSON.parse(userStr);

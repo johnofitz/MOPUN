@@ -61,7 +61,6 @@ namespace MOPUN.Services
         private double GetTokenExpirationMinutes()
         {
             // You can modify this method to read the token expiration time from the configuration or other logic.
-            // For now, we'll use 15 minutes as an example.
             return 15;
         }
     }
