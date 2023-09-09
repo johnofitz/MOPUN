@@ -49,7 +49,7 @@ const MainNav = () => {
         </ul>
       </nav>
       <Form action="/logout" method="post">
-        <button>Logout</button>
+        <button className={classes.Mainbutton}>Logout</button>
       </Form>
     </header>
   );

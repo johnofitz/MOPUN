@@ -18,6 +18,7 @@
     "mini.css": "^3.0.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.8.0",
+    "react-datepicker": "^4.17.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.14.2",
     "react-scripts": "^5.0.0",
@@ -50,6 +51,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-datepicker": "^4.15.0",
     "eslint-config-react-app": "^7.0.1",
     "jest-editor-support": "^31.1.0"
   }

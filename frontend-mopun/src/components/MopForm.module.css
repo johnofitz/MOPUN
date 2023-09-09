@@ -3,7 +3,7 @@ body {
   }
   
   .mop {
-    width: 500px;
+    /* width: 360px; */
     padding: 4% 0 0;
     margin: auto;
     font-family: 'Comfortaa', Arial, Helvetica, sans-serif;
@@ -15,16 +15,20 @@ body {
     z-index: 1;
     background: #FFFFFF;
     border-radius: 10px;
-    max-width: 500px;
+    width: 900px;
+    max-width: 800px;
     margin: 0 auto 100px;
-    padding: 45px;
+    padding-top: 20px;
+    padding-left: 45px;
+    padding-right: 45px;
+    padding-bottom: 45px;
     text-align: center;
   }
   
   .mopForm input {
     outline: 0;
     background: #f2f2f2;
-    width: 100%;
+    width: 80%;
     border: 0;
     border-radius: 5px;
     margin: 0 0 15px;
@@ -39,50 +43,53 @@ body {
     background: #dbdbdb;
   }
   
-  .mopForm button {
-    font-family: 'Comfortaa', sans-serif;
-    text-transForm: uppercase;
-    outline: 0;
-    background: #009E60;
-    width: 50%;
-    border: 0;
-    border-radius: 15px;
-    padding: 15px;
-    color: #FFFFFF;
-    font-size: 14px;
-    -webkit-transition: all 0.3 ease;
-    transition: all 0.3 ease;
-    cursor: pointer;
-    position: centre;
-  }
-  
-  .mopForm button:active {
-    background: orange;
-  }
+
   
   .mopForm span {
-    font-size: 40px;
+    font-size: 60px;
     color: #000106a6;
     margin-bottom: 25px;
     display: block;
   }
   
   .mopForm p.error {
-    margin: 0 0 10px 10px;
+    margin: 0px 0 10px 70px;
     text-align: left;
     font-size: 10px;
     color: red;
   }
   .mop-heading {
-      margin: 25px ;
+   
       display: flex;
       align-items: center;
     }
     
-    .mop-heading img {
-      margin-left: 90px;   
-      margin-bottom: 25px;
-      width: 60px;
-      height: 60px;
+    .images {
+      margin-left: 85%;   
+      width: 80px;
+      height: 80px;
     }
+
+    .mopbutton {
+      font-family: 'Comfortaa', sans-serif;
+      text-transForm: uppercase;
+      outline: 0;
+      background: #009E60;
+      width: 30%;
+      border: 0;
+      border-radius: 15px;
+      padding: 15px;
+      color: #FFFFFF;
+      font-size: 14px;
+      -webkit-transition: all 0.3 ease;
+      transition: all 0.3 ease;
+      cursor: pointer;
+      position: centre;
+    }
+    
+    .mopbutton:active {
+      background: orange;
+    }
+    
+    
     

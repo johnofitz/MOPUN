@@ -1,4 +1,4 @@
-import PageContent from "../components/PageContent";
+
 import Auth from "../components/AuthForm";
 const Home =()=>{
     return (

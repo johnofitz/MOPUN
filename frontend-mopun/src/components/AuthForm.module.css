@@ -3,7 +3,7 @@ body {
 }
 
 .login {
-  width: 500px;
+  /* width: 500px; */
   padding: 4% 0 0;
   margin: auto;
   font-family: 'Comfortaa', Arial, Helvetica, sans-serif;
@@ -24,7 +24,7 @@ body {
 .form input {
   outline: 0;
   background: #f2f2f2;
-  width: 100%;
+  width: 60%;
   border: 0;
   border-radius: 5px;
   margin: 0 0 15px;
@@ -49,39 +49,39 @@ body {
   border-radius: 15px;
   padding: 15px;
   color: #FFFFFF;
-  font-size: 14px;
+  font-size: 10px;
   -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
   cursor: pointer;
-  position: centre;
+  position: center;
 }
 
 .form button:active {
   background: orange;
 }
 
-.form span {
-  font-size: 70px;
-  color: #000106a6;
-  margin-bottom: 25px;
-  display: block;
-}
 
 .form p.error {
-  margin: 0 0 10px 10px;
+  margin: 0 0 10px 80px;
   text-align: left;
   font-size: 10px;
   color: red;
 }
-.login-heading {
-    margin-left: 40px;
+
+  .login-heading {
     display: flex;
+    justify-content: center;
     align-items: center;
+
   }
   
-  .login-heading img {
-    margin-left: 30px;
-    width: 90px;
-    height: 90px;
+  .images {
+    padding-bottom: 10px;
+    width: 150px;
+    height: 150px;
   }
+
+ 
+  
+  
   
