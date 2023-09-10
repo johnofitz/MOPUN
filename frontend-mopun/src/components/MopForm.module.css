@@ -1,9 +1,8 @@
 body {
     background: linear-gradient(90deg, #81e4fd 0%, #009EDB 100%);
-  }
-  
+  } 
+
   .mop {
-    /* width: 360px; */
     padding: 4% 0 0;
     margin: auto;
     font-family: 'Comfortaa', Arial, Helvetica, sans-serif;
@@ -39,13 +38,13 @@ body {
   
   }
   
-  .mopForm input:focus {
+   .mopForm input:focus {
     background: #dbdbdb;
   }
   
 
-  
-  .mopForm span {
+   
+  .mopForm h1 {
     font-size: 60px;
     color: #000106a6;
     margin-bottom: 25px;
@@ -55,9 +54,10 @@ body {
   .mopForm p.error {
     margin: 0px 0 10px 70px;
     text-align: left;
-    font-size: 10px;
+    font-size: 15px;
     color: red;
   }
+  
   .mop-heading {
    
       display: flex;
@@ -79,7 +79,7 @@ body {
       border: 0;
       border-radius: 15px;
       padding: 15px;
-      color: #FFFFFF;
+      color: #ece4e4;
       font-size: 14px;
       -webkit-transition: all 0.3 ease;
       transition: all 0.3 ease;
@@ -91,5 +91,29 @@ body {
       background: orange;
     }
     
-    
-    
+ 
+/* Update your CSS to center the text under each radio label */
+.mopForm .radioContainer {
+ 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.mopForm .radioItem {
+  text-align: center;
+  margin-top: 5px;
+  margin-left: 10px;
+}
+
+.mopForm .radioItem label {
+  display: block;
+  text-align: center; /* Center-align the label text */
+  margin-left: 100px; /* Add this line to center the text */
+  margin-right: 10px; /* Add this line to center the text */
+  padding-bottom: 45px;
+}
+
+
+

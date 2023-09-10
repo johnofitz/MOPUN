@@ -71,7 +71,7 @@ const Auth = () => {
                 <p className={classes.error}>
                   {errors.password && touched.password && errors.password}
                 </p>
-                <button type="submit">Login</button>
+                <button type="submit" className={classes.logbutton}>Login</button>
               </form>
             </div>
           </div>
