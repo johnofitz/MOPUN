@@ -43,7 +43,7 @@ const MopForm = () => {
           endTime: null,
         }}
         onSubmit={(values) => {
-          
+         
 
           console.log("Form submitted with values:", values); // Add this line
         }}
@@ -120,7 +120,6 @@ const MopForm = () => {
                   {errors.patrolDate && touched.patrolDate && errors.patrolDate}
                 </p>
 
-           
                 <TimePicker.RangePicker
                   id="patrolTimes"
                   className={classes["timePicker"]}
@@ -128,20 +127,19 @@ const MopForm = () => {
                    onChange={(time) =>
                     setFieldValue("patrolTimes", time) // set the whole array
                   }
-                  
-
                   onBlur={handleBlur}
                   format="HH:mm"
-                  placeholder={["Start Time", "End Time"]}
+                  placeholder={["Start Time", "End Time"]}   
                   
                 />
+
                 <p className={classes.error}>
                   {errors.patrolTimes &&
                     touched.patrolTimes &&
                     errors.patrolTimes}
                 </p>
-                <RadioButtons
-                  
+
+                <RadioButtons 
                   name="selectedOption"
                   value={values.selectedOption}
                   onChange={handleChange}
