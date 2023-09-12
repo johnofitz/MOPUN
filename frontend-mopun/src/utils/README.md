@@ -1,1 +1,0 @@
-#### This folder contains files which are not used throught the application such as libraries or help

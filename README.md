@@ -1,11 +1,5 @@
 # MOP System
 
-## Do not push to master branch until code review or end of Sprint. !!!
-
-### Once you have SQL Server configured edit your appsettings.json to apply your connection
-
-### The DB name should remain the same for all instances which I named MOP.
-
 
 #### The SQLServer connection is added in program.cs to allow interaction with DB instance: 
 
