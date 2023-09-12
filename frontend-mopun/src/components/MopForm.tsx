@@ -1,9 +1,12 @@
 import { Formik } from "formik";
 import * as Yup from "yup";
 import classes from "./MopForm.module.css";
-import CustomDatePicker from "./CustomDatePicker";
+import DatePick from "./DatePick";
 import RadioButtons from "./RadioButtonComponent";
-import { TimePicker } from "antd";
+import TimePick from "./TimePick";
+import PostSelect from "./PostSelect";
+import { useState } from "react";
+
 
 const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -18,15 +21,16 @@ const schema = Yup.object().shape({
   patrolMobile: Yup.string()
     .matches(phoneRegExp, "Phone number is not valid")
     .required("Phone Number required"),
-  patrolTimes: Yup.array()
-    .of(Yup.object()) // Make sure it's an array of moment objects
-    .required("Patrol Times are required"),
+  startTimes: Yup.string().required("Start Time are required"),
+  endTimes: Yup.string().required("End Time are required"),
   // patrolStartPoint: Yup.string().required("Starting Location Required"),
-  // patrolEndPoint: Yup.string().required("Starting Location Required"),
   // patrolMoto: Yup.string().required("Motorolla ID Required"),
 });
 
+
 const MopForm = () => {
+  const [selectedOutpost, setSelectedOutpost] = useState<string>("")
+
   return (
     <>
       {/* Wrapping form inside formik tag and passing our schema to validationSchema prop */}
@@ -38,13 +42,12 @@ const MopForm = () => {
           patrolMobile: "",
           patrolDate: null,
           selectedOption: "",
-          patrolTimes: null,
-          startTime: null, // Separate field for start time
-          endTime: null,
+          endTimes: null,
+          startTimes: null,
+          selectedOutpost:"",
+          // patrolStartPoint: "",
         }}
         onSubmit={(values) => {
-         
-
           console.log("Form submitted with values:", values); // Add this line
         }}
       >
@@ -56,108 +59,125 @@ const MopForm = () => {
           handleBlur,
           handleSubmit,
           setFieldValue,
-        }) => (
-          <div className={classes.mop}>
-            <div className={classes.mopForm}>
-              <form noValidate onSubmit={handleSubmit}>
-                <div className={classes.heading}>
-                  <img
-                    src={require("../images/irishPoll.png")}
-                    alt="profile-img"
-                    className={classes.images}
+        }) => {
+          return (
+            <div className={classes.mop}>
+              <div className={classes.mopForm}>
+                <form noValidate onSubmit={handleSubmit}>
+                  <div className={classes.heading}>
+                    <img
+                      src={require("../images/irishPoll.png")}
+                      alt="profile-img"
+                      className={classes.images}
+                    />
+                    <h1>Patrol Form</h1>
+                  </div>
+                  {/* passing formik parameters like handleChange, values, handleBlur to input */}
+                  <input
+                    id="callSign"
+                    type="text"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.callSign}
+                    placeholder="Call Sign"
+                    className="form-control inp_text"
                   />
-                  <h1>Patrol Form</h1>
-                </div>
-                {/* passing formik parameters like handleChange, values, handleBlur to input */}
-                <input
-                  id="callSign"
-                  type="text"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.callSign}
-                  placeholder="Call Sign"
-                  className="form-control inp_text"
-                />
-                {/* If validation is not passed show errors */}
-                <p className={classes.error}>
-                  {errors.callSign && touched.callSign && errors.callSign}
-                </p>
-                <input
-                  id="patrolType"
-                  type="text"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.patrolType}
-                  placeholder="Patrol Type"
-                  className="form-control inp_text"
-                />
-                <p className={classes.error}>
-                  {errors.patrolType && touched.patrolType && errors.patrolType}
-                </p>
+                  {/* If validation is not passed show errors */}
+                  <p className={classes.error}>
+                    {errors.callSign && touched.callSign && errors.callSign}
+                  </p>
+                  <input
+                    id="patrolType"
+                    type="text"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.patrolType}
+                    placeholder="Patrol Type"
+                    className="form-control inp_text"
+                  />
+                  <p className={classes.error}>
+                    {errors.patrolType &&
+                      touched.patrolType &&
+                      errors.patrolType}
+                  </p>
 
-                <input
-                  id="patrolMobile"
-                  type="text"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.patrolMobile}
-                  placeholder="Mobile Number"
-                  className="form-control inp_text"
-                />
-                <p className={classes.error}>
-                  {errors.patrolMobile &&
-                    touched.patrolMobile &&
-                    errors.patrolMobile}
-                </p>
+                  <input
+                    id="patrolMobile"
+                    type="text"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.patrolMobile}
+                    placeholder="Mobile Number"
+                    className="form-control inp_text"
+                  />
 
-                <CustomDatePicker             
-                  name="patrolDate"
-                  value={values.patrolDate}
-                  onChange={(date) => setFieldValue("patrolDate", date)}
-                  onBlur={handleBlur}
-                />
-                <p className={classes.error}>
-                  {errors.patrolDate && touched.patrolDate && errors.patrolDate}
-                </p>
+                  <p className={classes.error}>
+                    {errors.patrolMobile &&
+                      touched.patrolMobile &&
+                      errors.patrolMobile}
+                  </p>
 
-                <TimePicker.RangePicker
-                  id="patrolTimes"
-                  className={classes["timePicker"]}
-                  value={values.patrolTimes}
-                   onChange={(time) =>
-                    setFieldValue("patrolTimes", time) // set the whole array
-                  }
-                  onBlur={handleBlur}
-                  format="HH:mm"
-                  placeholder={["Start Time", "End Time"]}   
-                  
-                />
+                  <DatePick
+                    name="patrolDate"
+                    value={values.patrolDate}
+                    onChange={(date) => setFieldValue("patrolDate", date)}
+                    onBlur={handleBlur}
+                  />
+                  <p className={classes.error}>
+                    {errors.patrolDate &&
+                      touched.patrolDate &&
+                      errors.patrolDate}
+                  </p>
+                  <div className={classes.timeContainer}>
+                    <TimePick
+                      name={"startTimes"}
+                      value={values.startTimes}
+                      onChange={(time) => setFieldValue("startTimes", time)}
+                      onBlur={handleBlur}
+                      holder={"Start Time"}
+                    />
+                    <TimePick
+                      name={"endTimes"}
+                      value={values.endTimes}
+                      onChange={(time) => setFieldValue("endTimes", time)}
+                      onBlur={handleBlur}
+                      holder="End Time"
+                    />
+                  </div>
+                  <p className={classes.error}>
+                    {errors.startTimes &&
+                      touched.startTimes &&
+                      errors.startTimes}
+                  </p>
+                  <p className={classes.error}>
+                    {errors.endTimes && touched.endTimes && errors.endTimes}
+                  </p>
 
-                <p className={classes.error}>
-                  {errors.patrolTimes &&
-                    touched.patrolTimes &&
-                    errors.patrolTimes}
-                </p>
-
-                <RadioButtons 
-                  name="selectedOption"
-                  value={values.selectedOption}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
-                <p className={classes.error}>
-                  {errors.selectedOption &&
-                    touched.selectedOption &&
-                    errors.selectedOption}
-                </p>
-
-                <button type="submit" className={classes.mopbutton}>
-                  Submit Mop
-                </button>
-              </form>
+                  <PostSelect selectedValue={selectedOutpost} onChange={setSelectedOutpost} />
+                  {/* <p className={classes.error}>
+                    {errors.patrolStartPoint &&
+                      touched.patrolStartPoint &&
+                      errors.patrolStartPoint}
+                  </p> */}
+                  <RadioButtons
+                    name="selectedOption"
+                    value={values.selectedOption}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  <p className={classes.error}>
+                    {errors.selectedOption &&
+                      touched.selectedOption &&
+                      errors.selectedOption}
+                  </p>
+                  <button type="submit" className={classes.mopbutton}>
+                    Submit Mop
+                  </button>
+                </form>
+              </div>
             </div>
-          </div>
-        )}
+          );
+        }}
       </Formik>
     </>
   );

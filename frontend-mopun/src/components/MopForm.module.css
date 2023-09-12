@@ -114,18 +114,43 @@ body {
   margin-right: 10px; /* Add this line to center the text */
   padding-bottom: 45px;
 }
-
-.timePicker{
+.mopForm .timePicker {
   outline: 0;
   background: #f2f2f2;
-  width: 80%;
+  width: 40%;
   border: 0;
   border-radius: 5px;
   margin: 0 0 15px;
-  padding: 15px;
+  padding: 5px; /* Add padding for consistency with other inputs */
   box-sizing: border-box;
-  font-size: 12px;
+  font-size: 10px; /* Adjust font size for consistency */
   font-family: 'Comfortaa', sans-serif;
-  color: #009E60;
+  color: #000; /* Change text color to match other inputs */
 }
 
+.mopForm .timePicker:focus {
+  background: #dbdbdb;
+}
+
+/* Add margin and padding to the timeContainer for spacing */
+.mopForm .timeContainer {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-left: 25px;
+  margin-right: 30px;
+  margin-top: 15px; /* Add margin for spacing */
+  padding: 10px 0; /* Add padding for spacing */
+}
+
+/* Add styles for the PostSelect component */
+.mopForm .postselect {
+  width: 80%; /* Adjust the width as needed */
+  margin-left: 40px; /* Add left margin for spacing */
+  margin-right: 45px;
+  margin-top: 10px; /* Add top margin for spacing */
+  padding-bottom: 20px;
+ 
+
+}
