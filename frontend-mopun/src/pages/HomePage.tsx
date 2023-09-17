@@ -1,8 +1,11 @@
 
-import Auth from "../components/AuthForm";
+import LoginPage from "./LoginPage";
+
+
+
 const Home =()=>{
     return (
-        <Auth />
+       <LoginPage/>
       );
 }
 export default Home;
