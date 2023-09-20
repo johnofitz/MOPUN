@@ -7,6 +7,7 @@ import TimePick from "./TimePick";
 import PostSelect from "./PostSelect";
 import VehicleSelect from "./VehicleSelect";
 import PersonnelSelect from "./PersonnelSelect";
+import { Form } from "react-router-dom";
 
 const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -64,7 +65,7 @@ const MopForm = () => {
           return (
             <div className={classes.mop}>
               <div className={classes.mopForm}>
-                <form noValidate onSubmit={handleSubmit}>
+                <Form noValidate onSubmit={handleSubmit}>
                   <div className={classes.heading}>
                     <img
                       src={require("../images/irishPoll.png")}
@@ -211,7 +212,7 @@ const MopForm = () => {
                   <button type="submit" className={classes.mopbutton}>
                     Submit Mop
                   </button>
-                </form>
+                </Form>
               </div>
             </div>
           );

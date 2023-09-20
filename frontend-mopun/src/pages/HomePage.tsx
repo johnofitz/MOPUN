@@ -1,11 +1,10 @@
 
-import LoginPage from "./LoginPage";
 
 
 
 const Home =()=>{
     return (
-       <LoginPage/>
+       <h1>Bean system</h1>
       );
 }
 export default Home;

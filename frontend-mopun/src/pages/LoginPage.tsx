@@ -1,4 +1,4 @@
-import { json } from "react-router-dom";
+import { json, redirect } from "react-router-dom";
 import Auth from "../components/AuthForm";
 
 const LoginPage = () => {
@@ -7,15 +7,17 @@ const LoginPage = () => {
 
 export default LoginPage;
 
-export const action = async (username: string, password: string) => {
+export const action = async ({ request }: { request: Request }) => {
   const API_URL = "https://localhost:7056/api/Login/SignIn";
+
+  const data = await request.formData();
 
   const response = await fetch(API_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      username: username,
-      password: password,
+      username: data.get("username"),
+      password: data.get("password"),
     }),
   });
   if (response.status === 422 || response.status === 402) {
@@ -29,7 +31,7 @@ export const action = async (username: string, password: string) => {
   const role = resData.roles;
 
   sessionStorage.setItem("token", token);
-  sessionStorage.setItem("role", role)
+  sessionStorage.setItem("role", role);
 
-
+  return redirect("/mop");
 };

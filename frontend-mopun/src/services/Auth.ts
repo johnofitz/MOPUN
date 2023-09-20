@@ -4,9 +4,15 @@ export const AuthToken =()=>{
     const token = sessionStorage.getItem('token');
     return token;
 }
+export const UserRole = () => {
+    return sessionStorage.getItem('role');
+  }
 
 export const TokenLoader =()=>{
-    return AuthToken();
+    const token = AuthToken();
+    //const role = UserRole();
+  
+    return token;
 }
 
 export const CheckAuthToken=()=>{

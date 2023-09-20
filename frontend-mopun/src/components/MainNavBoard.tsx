@@ -2,16 +2,16 @@ import { Form, NavLink, useRouteLoaderData } from "react-router-dom";
 import classes from "./MainNav.module.css";
 
 const MainNav = () => {
-  const token: string = useRouteLoaderData("root") as string;
+
+  const token:any = useRouteLoaderData("root");
+  
 
 
- 
-  console.log('MainNav component rendered');
   return (
     <header className={classes.header}>
       <nav>
         <ul className={classes.list}>
-        {!token && (
+        {!token &&  (
           <li>
             <NavLink
               to="/"
@@ -36,7 +36,7 @@ const MainNav = () => {
               </NavLink>
             </li>
           )}
-          {/* {!token && (
+          {!token && (
             <li>
               <NavLink
                 to="/auth"
@@ -47,7 +47,7 @@ const MainNav = () => {
                 Login
               </NavLink>
             </li>
-          )} */}
+          )}
         </ul>
       </nav>
       {token && (
