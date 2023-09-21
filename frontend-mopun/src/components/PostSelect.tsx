@@ -2,12 +2,10 @@ import { Select } from "antd";
 import './PostSelect.css';
 
 interface PostSelectProps {
-  selectedValue: string;
-  onChange: (value: string) => void;
+  name: string;
+  onUpdate: (value: string) => void;
 }
-const onChange = (value: string) => {
-  console.log(`selected ${value}`);
-};
+
 
 const onSearch = (value: string) => {
   console.log("search:", value);
@@ -34,13 +32,15 @@ const PostSelect = (props: PostSelectProps) => {
 
   return (
     <Select
+  
+    id="patrolStartPoint"
     showSearch
     bordered
     allowClear
     style={{ width: '81%'}}
     placeholder="Select Outpost"
     optionFilterProp="children"
-    onChange={onChange}
+    onChange={(val) => props.onUpdate(val)}
     onSearch={onSearch}
     >
       {options.map((option) => (

@@ -7,6 +7,7 @@ body {
     margin: auto;
     font-family: 'Comfortaa', Arial, Helvetica, sans-serif;
     font-style: italic;
+
   }
   
   .mopForm {
@@ -25,16 +26,18 @@ body {
   }
   
   .mopForm input {
+   
     outline: 0;
     background: #f2f2f2;
     width: 80%;
     border: 0;
     border-radius: 5px;
-    margin: 0 0 15px;
+    margin: 0 auto 20px;
     padding: 15px;
     box-sizing: border-box;
     font-size: 14px;
     font-family: 'Comfortaa', sans-serif;
+    
   
   }
   
@@ -42,7 +45,9 @@ body {
     background: #dbdbdb;
   }
   
-
+  .mopForm input::placeholder {
+    color: darkgray
+  }
    
   .mopForm h1 {
     font-size: 60px;
@@ -146,10 +151,7 @@ body {
 
 /* Add styles for the PostSelect component */
 .mopForm .postselect {
-  width: 80%; /* Adjust the width as needed */
-  margin-left: 40px; /* Add left margin for spacing */
-  margin-right: 45px;
-  margin-top: 10px; /* Add top margin for spacing */
+
   padding-bottom: 20px;
  
 

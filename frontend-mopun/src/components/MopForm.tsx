@@ -5,8 +5,9 @@ import DatePick from "./DatePick";
 import RadioButtons from "./RadioButtonComponent";
 import TimePick from "./TimePick";
 import PostSelect from "./PostSelect";
-import { useState } from "react";
-
+import VehicleSelect from "./VehicleSelect";
+import PersonnelSelect from "./PersonnelSelect";
+import { Form } from "react-router-dom";
 
 const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -23,14 +24,13 @@ const schema = Yup.object().shape({
     .required("Phone Number required"),
   startTimes: Yup.string().required("Start Time are required"),
   endTimes: Yup.string().required("End Time are required"),
-  // patrolStartPoint: Yup.string().required("Starting Location Required"),
-  // patrolMoto: Yup.string().required("Motorolla ID Required"),
+  patrolMoto: Yup.string().required("Motorolla ID Required"),
+  patrolStartPoint: Yup.string().required("Starting Location Required"),
+  patrolVehicle: Yup.array().required("Vehicle Registration Required"),
+  addPersonnel: Yup.array().required("Bunker Numbers Are Required"),
 });
 
-
 const MopForm = () => {
-  const [selectedOutpost, setSelectedOutpost] = useState<string>("")
-
   return (
     <>
       {/* Wrapping form inside formik tag and passing our schema to validationSchema prop */}
@@ -44,8 +44,10 @@ const MopForm = () => {
           selectedOption: "",
           endTimes: null,
           startTimes: null,
-          selectedOutpost:"",
-          // patrolStartPoint: "",
+          patrolStartPoint: "",
+          patrolMoto: "",
+          patrolVehicle: "",
+          addPersonnel: "",
         }}
         onSubmit={(values) => {
           console.log("Form submitted with values:", values); // Add this line
@@ -63,7 +65,7 @@ const MopForm = () => {
           return (
             <div className={classes.mop}>
               <div className={classes.mopForm}>
-                <form noValidate onSubmit={handleSubmit}>
+                <Form noValidate onSubmit={handleSubmit}>
                   <div className={classes.heading}>
                     <img
                       src={require("../images/irishPoll.png")}
@@ -117,6 +119,22 @@ const MopForm = () => {
                       errors.patrolMobile}
                   </p>
 
+                  <input
+                    id="patrolMoto"
+                    type="text"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.patrolMoto}
+                    placeholder="Motorolla ID"
+                    className="form-control inp_text"
+                  />
+
+                  <p className={classes.error}>
+                    {errors.patrolMoto &&
+                      touched.patrolMoto &&
+                      errors.patrolMoto}
+                  </p>
+
                   <DatePick
                     name="patrolDate"
                     value={values.patrolDate}
@@ -152,13 +170,40 @@ const MopForm = () => {
                   <p className={classes.error}>
                     {errors.endTimes && touched.endTimes && errors.endTimes}
                   </p>
-
-                  <PostSelect selectedValue={selectedOutpost} onChange={setSelectedOutpost} />
-                  {/* <p className={classes.error}>
+                  <div className={classes.postselect}>
+                  <PostSelect
+                    
+                    name="patrolStartPoint"
+                    onUpdate={(val) => setFieldValue("patrolStartPoint", val)}
+                  />
+                  <p className={classes.error}>
                     {errors.patrolStartPoint &&
                       touched.patrolStartPoint &&
                       errors.patrolStartPoint}
-                  </p> */}
+                  </p>
+                  </div>
+                  <div className={classes.postselect}>
+                  <VehicleSelect
+                    name={"patrolVehicle"}
+                    onUpdate={(val) => setFieldValue("patrolVehicle", val)}
+                  />
+                  <p className={classes.error}>
+                    {errors.patrolVehicle &&
+                      touched.patrolVehicle &&
+                      errors.patrolVehicle}
+                  </p>
+                  </div>
+                  <div className={classes.postselect}>
+                  <PersonnelSelect
+                    name={"addPersonnel"}
+                    onUpdate={(val) => setFieldValue("addPersonnel", val)}
+                  />
+                  <p className={classes.error}>
+                    {errors.addPersonnel &&
+                      touched.addPersonnel &&
+                      errors.addPersonnel}
+                  </p>
+                 </div>
                   <RadioButtons
                     name="selectedOption"
                     value={values.selectedOption}
@@ -173,7 +218,7 @@ const MopForm = () => {
                   <button type="submit" className={classes.mopbutton}>
                     Submit Mop
                   </button>
-                </form>
+                </Form>
               </div>
             </div>
           );

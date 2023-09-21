@@ -1,5 +1,5 @@
 body {
-  background: linear-gradient(90deg, #81e4fd 0%, #009EDB 100%);
+  background: linear-gradient(90deg,#009EDB 0%, #009EDB 100%);
 }
 
 .login {
@@ -16,7 +16,7 @@ body {
   border-radius: 10px;
   width: 500px;
   height: auto;
-  margin: 0 auto 100px;
+  margin: 0 auto auto;
   padding: 45px;
   text-align: center;
 }
@@ -27,12 +27,12 @@ body {
   width: 70%;
   border: 0;
   border-radius: 5px;
-  margin: 0 0 15px;
+  margin: 0 auto 20px;
   padding: 15px;
   box-sizing: border-box;
   font-size: 17px;
   font-family: 'Comfortaa', sans-serif;
-
+ 
 }
 
 .form input:focus {
@@ -78,7 +78,7 @@ body {
   .images {
     padding-bottom: 15px;
     width: 150px;
-    height: 150px;
+    height: 170px;
   }
 
  
