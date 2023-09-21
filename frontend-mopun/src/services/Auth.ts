@@ -7,10 +7,13 @@ export const AuthToken =()=>{
 export const UserRole = () => {
     return sessionStorage.getItem('role');
   }
-
+export const RoleLoader =()=>{
+    const role = UserRole();
+    return role;
+}
 export const TokenLoader =()=>{
     const token = AuthToken();
-    //const role = UserRole();
+    
   
     return token;
 }

@@ -1,5 +1,6 @@
 import { json, redirect } from "react-router-dom";
 import Auth from "../components/AuthForm";
+import { UserRole } from "../services/Auth";
 
 const LoginPage = () => {
   return <Auth />;
@@ -8,6 +9,7 @@ const LoginPage = () => {
 export default LoginPage;
 
 export const action = async ({ request }: { request: Request }) => {
+  let privi:string = "";
   const API_URL = "https://localhost:7056/api/Login/SignIn";
 
   const data = await request.formData();
@@ -28,10 +30,18 @@ export const action = async ({ request }: { request: Request }) => {
   }
   const resData = await response.json();
   const token = resData.token;
-  const role = resData.roles;
+  const role:string = resData.roles;
 
   sessionStorage.setItem("token", token);
   sessionStorage.setItem("role", role);
-
-  return redirect("/mop");
+  const checkRole = UserRole();
+  
+  if(checkRole === "User"){
+   privi = "/mop";
+  }
+  if(checkRole === "High"){
+    privi ="/toc";
+  }
+  console.log(privi);
+  return redirect(privi);
 };

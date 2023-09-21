@@ -170,7 +170,9 @@ const MopForm = () => {
                   <p className={classes.error}>
                     {errors.endTimes && touched.endTimes && errors.endTimes}
                   </p>
+                  <div className={classes.postselect}>
                   <PostSelect
+                    
                     name="patrolStartPoint"
                     onUpdate={(val) => setFieldValue("patrolStartPoint", val)}
                   />
@@ -179,6 +181,8 @@ const MopForm = () => {
                       touched.patrolStartPoint &&
                       errors.patrolStartPoint}
                   </p>
+                  </div>
+                  <div className={classes.postselect}>
                   <VehicleSelect
                     name={"patrolVehicle"}
                     onUpdate={(val) => setFieldValue("patrolVehicle", val)}
@@ -188,7 +192,8 @@ const MopForm = () => {
                       touched.patrolVehicle &&
                       errors.patrolVehicle}
                   </p>
-
+                  </div>
+                  <div className={classes.postselect}>
                   <PersonnelSelect
                     name={"addPersonnel"}
                     onUpdate={(val) => setFieldValue("addPersonnel", val)}
@@ -198,6 +203,7 @@ const MopForm = () => {
                       touched.addPersonnel &&
                       errors.addPersonnel}
                   </p>
+                 </div>
                   <RadioButtons
                     name="selectedOption"
                     value={values.selectedOption}

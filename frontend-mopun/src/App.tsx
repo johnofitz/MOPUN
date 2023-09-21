@@ -1,11 +1,14 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import MopPage from './pages/MopPage';
 import RootLayout from "./pages/Root";
-import HomePage from "./pages/HomePage";
 import ErrorPage from "./pages/ErrorPage";
 import LoginPage, { action as authAction} from "./pages/LoginPage";
 import { Logout } from "./pages/Logout";
 import { TokenLoader } from "./services/Auth";
+import TocPage from "./pages/TocPage";
+import CommcenPage from "./pages/CommcenPage";
+
+
 
 const router = createBrowserRouter([
   {
@@ -15,12 +18,16 @@ const router = createBrowserRouter([
     id: 'root',
     loader: TokenLoader,
     children: [
-      { index: true, element: <HomePage />},
-      {path: "auth", element: <LoginPage/>, action: authAction},
-      { path: "mop", element: <MopPage/>},
+      { index: true, element: <LoginPage />, action: authAction},
+      
+      { path: "mop", element: <MopPage /> },
+      
+      { path: "toc", element: <TocPage /> },
+
+      { path: "commop", element: <CommcenPage /> },
       {
         path: "logout",
-        action: Logout,
+       action: Logout,
       },
     ],
   },

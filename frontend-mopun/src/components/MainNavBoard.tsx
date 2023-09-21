@@ -1,61 +1,47 @@
-import { Form, NavLink, useRouteLoaderData } from "react-router-dom";
+import { Form, Link, useRouteLoaderData } from "react-router-dom";
 import classes from "./MainNav.module.css";
+import { Container, Nav, Navbar } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+
 
 const MainNav = () => {
-
-  const token:any = useRouteLoaderData("root");
-  
-
-
+  const token: any = useRouteLoaderData("root");
+  if (!token) {
+    return null;
+  }
   return (
-    <header className={classes.header}>
-      <nav>
-        <ul className={classes.list}>
-        {!token &&  (
-          <li>
-            <NavLink
-              to="/"
-              className={({ isActive }) =>
-                isActive ? classes.active : undefined
-              }
-              end
-            >
-              Home
-            </NavLink>
-          </li>
-        )}
+    <Navbar bg="light" expand="lg">
+      <Container>
+        <Navbar.Brand>
+          <img
+            src={require("../images/irishPoll.png")}
+            alt="profile-img"
+            className={classes.images}
+          />
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="navbar-nav" />
+        <Navbar.Collapse id="navbar-nav">
+          <Nav className="me-auto">
+          <Nav.Link as={Link} to="/toc">
+              Toc Home
+            </Nav.Link>
+            <Nav.Link as={Link} to="/commop">
+              Operator
+            </Nav.Link>
+            <Nav.Link as={Link} to="/mop">
+              Patrol Form
+            </Nav.Link>    
+          </Nav>
           {token && (
-            <li>
-              <NavLink
-                to="/mop"
-                className={({ isActive }) =>
-                  isActive ? classes.active : undefined
-                }
-              >
-                Patrol Form
-              </NavLink>
-            </li>
+            <Form action="/logout" method="post">
+              <button className={classes.Mainbutton}>
+                Logout
+              </button>
+            </Form>
           )}
-          {!token && (
-            <li>
-              <NavLink
-                to="/auth"
-                className={({ isActive }) =>
-                  isActive ? classes.active : undefined
-                }
-              >
-                Login
-              </NavLink>
-            </li>
-          )}
-        </ul>
-      </nav>
-      {token && (
-        <Form action="/logout" method="post">
-          <button className={classes.Mainbutton}>Logout</button>
-        </Form>
-      )}
-    </header>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 };
 
