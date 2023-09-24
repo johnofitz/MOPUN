@@ -9,9 +9,13 @@ namespace MOPUN.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+   
     public class LoginController : ControllerBase
     {
+        // Object created for Database
         private readonly MOPUNDB _context;
+
+        // Object created for TokenService class
         private readonly TokenService _tokenService;
 
         /// <summary>
@@ -77,7 +81,8 @@ namespace MOPUN.Controllers
 
         
         /// <summary>
-        /// 
+        ///  Private method used to Authenticate user and generate JWT token for 
+        ///  frontend use on authorization
         /// </summary>
         /// <param name="userLogin"></param>
         /// <returns></returns>

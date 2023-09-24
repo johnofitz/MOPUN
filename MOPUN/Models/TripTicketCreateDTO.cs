@@ -4,6 +4,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 #nullable disable
 namespace MOPUN.Models
 {  
+    /// <summary>
+    /// Model used to accept frontend data as LastUpadates
+    /// are dealt with in database
+    /// </summary>
     public class TripTicketCreateDTO
     {
         [Key]

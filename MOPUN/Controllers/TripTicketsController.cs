@@ -5,6 +5,9 @@ using MOPUN.Models;
 
 namespace MOPUN.Controllers
 {
+    /// <summary>
+    /// API Controller that deals with GET, POST, PUT and DELETE requests for MOP forms
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class TripTicketsController : ControllerBase
