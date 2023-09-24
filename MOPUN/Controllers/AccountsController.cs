@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MOPUN.Data;
 using MOPUN.Models;
@@ -21,16 +16,16 @@ namespace MOPUN.Controllers
             _context = context;
         }
 
-        // GET: api/Accounts
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Accounts>>> GetAccounts()
-        {
-          if (_context.Accounts == null)
-          {
-              return NotFound();
-          }
-            return await _context.Accounts.ToListAsync();
-        }
+        // // GET: api/Accounts
+        // [HttpGet]
+        // public async Task<ActionResult<IEnumerable<Accounts>>> GetAccounts()
+        // {
+        //   if (_context.Accounts == null)
+        //   {
+        //       return NotFound();
+        //   }
+        //     return await _context.Accounts.ToListAsync();
+        // }
 
         // GET: api/Accounts/5
         [HttpGet("{id}")]

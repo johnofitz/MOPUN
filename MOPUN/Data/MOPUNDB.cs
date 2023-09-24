@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using MOPUN.Models;
 
 namespace MOPUN.Data
@@ -13,5 +11,8 @@ namespace MOPUN.Data
         }
         public DbSet<Accounts> Accounts { get; set; } = default!;
 
+        public DbSet<TripTickets> TripTickets {get; set;} = default!;
+
+  
     }
 }
