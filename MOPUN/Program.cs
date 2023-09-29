@@ -4,7 +4,6 @@ using Microsoft.IdentityModel.Tokens;
 using MOPUN.Data;
 using MOPUN.Services;
 using System.Text;
-using MOPUN.Controllers;
 #nullable disable
 
 var builder = WebApplication.CreateBuilder(args);
@@ -69,6 +68,7 @@ app.UseAuthorization();
 
 // Map controllers for handling incoming requests.
 app.MapControllers();
+
 
 
 app.Run();

@@ -11,6 +11,10 @@ namespace MOPUN.Data
 
         public DbSet<TripTickets> TripTickets {get; set;} = default!;
 
+        public DbSet<PersonnelTrips> PersonnelTrips {get; set;} = default!;
+
+        public DbSet<VehicleTrips> VehicleTrips { get; set;} = default!;
+
   
     }
 }

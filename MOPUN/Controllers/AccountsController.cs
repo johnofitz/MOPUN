@@ -95,7 +95,7 @@ namespace MOPUN.Controllers
         /// </summary>
         /// <param name="accounts"></param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpPost("AddAccount")]
         public async Task<ActionResult<Accounts>> PostAccounts(Accounts accounts)
         {
           if (_context.Accounts == null)

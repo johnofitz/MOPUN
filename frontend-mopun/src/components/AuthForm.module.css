@@ -1,39 +1,53 @@
 body {
-  background: linear-gradient(90deg,#009EDB 0%, #009EDB 100%);
+  background: linear-gradient(90deg, #009EDB 0%, #009EDB 100%);
+  margin: 0; /* Remove default margin to prevent unwanted spacing */
 }
 
 .login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Adjust the height as needed */
+  background: linear-gradient(90deg, #009EDB 0%, #009EDB 100%);
   padding: 4% 0 0;
-  margin: auto;
   font-family: 'Comfortaa', Arial, Helvetica, sans-serif;
   font-style: italic;
 }
 
 .form {
-  position: relative;
-  z-index: 1;
   background: #FFFFFF;
   border-radius: 10px;
-  width: 500px;
-  height: auto;
-  margin: 0 auto auto;
-  padding: 45px;
-  text-align: center;
+  width: 900px; /* Increase the width of the form */
+  max-width: 80%; /* Limit the form's width for responsiveness */
+  height: 500px;
+  margin: 20px auto; /* Center the form horizontally and provide some spacing */
+  display: flex;
+  align-items: center;
+  padding: 20px; /* Adjust the padding as needed */
+}
+
+.images {
+  margin-right: 40px; /* Add some space between the image and form */
+  width: 300px;
+  height: 320px;
+}
+
+.formInputs {
+  flex: 1; /* Allow the form inputs to take up remaining space */
 }
 
 .form input {
+  padding-top: 20px;
+  margin-top: 50px;
   outline: 0;
   background: #f2f2f2;
-  width: 70%;
-  border: 0;
-  border-radius: 5px;
-  margin: 0 auto 20px;
-  padding: 15px;
+  width: 70%; /* Reduce the width to make the input fields smaller */ 
+  padding: 10px; /* Adjust the padding to make the input fields smaller */
   box-sizing: border-box;
-  font-size: 17px;
+  font-size: 16px; /* Reduce the font size for smaller text */
   font-family: 'Comfortaa', sans-serif;
- 
 }
+
 
 .form input:focus {
   background: #dbdbdb;
@@ -43,45 +57,54 @@ body {
   font-family: 'Comfortaa', sans-serif;
   text-transform: uppercase;
   outline: 0;
-  background: #009E60;
-  width: 50%;
+  background:lightblue;
+  width: 20%;
+  max-width: 200px; /* Limit the button's width for responsiveness */
   border: 0;
-  border-radius: 15px;
+  border-radius: 10px;
   padding: 15px;
+  margin-right: 0;
   color: #FFFFFF;
-  font-size: 10px;
-  -webkit-transition: all 0.3 ease;
-  transition: all 0.3 ease;
+  font-size: 12px; /* Increase font size for readability */
+  transition: background 0.3s ease; /* Simplify transition property */
   cursor: pointer;
-  position: center;
+
+}
+.wrapper {
+  position:relative;
+}
+
+.icon {
+  height: 1.5rem;
+  width: 1.5rem; 
+  background-color: transparent;
+  padding: 4px;
+  position:absolute;
+  box-sizing:border-box;
+  top:50%;
+  left:65%;
+  transform: translateY(-50%);
 }
 
 .logbutton:active {
   background: orange;
 }
 
-
+.buttoncontain{
+  
+  margin-top: 50px;
+}
 .form p.error {
-  margin: 0 0 10px 80px;
+  margin-left:30px;
   text-align: left;
   font-size: 14px;
   color: red;
 }
 
-  .login-heading {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.login-heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  }
-  
-  .images {
-    padding-bottom: 15px;
-    width: 150px;
-    height: 170px;
-  }
-
- 
-  
-  
-  
+/* Additional CSS styles for other elements as needed */

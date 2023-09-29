@@ -1,4 +1,4 @@
-import { Formik } from "formik";
+import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import classes from "./MopForm.module.css";
 import DatePick from "./DatePick";
@@ -7,7 +7,8 @@ import TimePick from "./TimePick";
 import PostSelect from "./PostSelect";
 import VehicleSelect from "./VehicleSelect";
 import PersonnelSelect from "./PersonnelSelect";
-import { Form } from "react-router-dom";
+import { redirect } from "react-router-dom";
+
 
 const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -31,6 +32,8 @@ const schema = Yup.object().shape({
 });
 
 const MopForm = () => {
+
+
   return (
     <>
       {/* Wrapping form inside formik tag and passing our schema to validationSchema prop */}
@@ -46,12 +49,47 @@ const MopForm = () => {
           startTimes: null,
           patrolStartPoint: "",
           patrolMoto: "",
-          patrolVehicle: "",
-          addPersonnel: "",
+          patrolVehicle:[],
+          addPersonnel: []
         }}
-        onSubmit={(values) => {
-          console.log("Form submitted with values:", values); // Add this line
+        onSubmit={async (values,  { resetForm ,setFieldValue}) => {
+          const API_URL = "https://localhost:7056/api/Trip/AddTrip";
+          console.log(values);
+          try {
+            const response = await fetch(API_URL, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(values),
+            });
+        
+            if (response.status === 422 || response.status === 402) {
+              // Handle validation error
+              console.error("Validation error");
+            } else if (!response.ok) {
+              // Handle server error
+              console.error("Server error");
+            } else {
+              // Request was successful, you can handle the success case here
+              console.log("Request successful");
+            }
+          } catch (error) {
+            // Handle any other errors that may occur during the request
+            console.error("An error occurred:", error);
+          }
+          resetForm();
+          // setFieldValue("patrolDate", null);
+          // setFieldValue("startTimes", null);
+          // setFieldValue("endTimes", null);
+          // setFieldValue("addPersonnel", []);
+          // setFieldValue("patrolVehicle", []);
+          // setIsSubmitted(true);
+          // setRedirectPath("/toc")
+          //redirect("/toc")
+        
         }}
+        
       >
         {({
           values,
@@ -78,6 +116,7 @@ const MopForm = () => {
                   <input
                     id="callSign"
                     type="text"
+                    name="callSign"
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.callSign}
@@ -91,6 +130,7 @@ const MopForm = () => {
                   <input
                     id="patrolType"
                     type="text"
+                    name="patrolType"
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.patrolType}
@@ -106,6 +146,7 @@ const MopForm = () => {
                   <input
                     id="patrolMobile"
                     type="text"
+                    name="patrolMobile"
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.patrolMobile}
@@ -122,6 +163,7 @@ const MopForm = () => {
                   <input
                     id="patrolMoto"
                     type="text"
+                    name="patrolMoto"
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.patrolMoto}
@@ -136,9 +178,8 @@ const MopForm = () => {
                   </p>
 
                   <DatePick
-                    name="patrolDate"
                     value={values.patrolDate}
-                    onChange={(date) => setFieldValue("patrolDate", date)}
+                    onChange={(date) => setFieldValue("patrolDate", date)} 
                     onBlur={handleBlur}
                   />
                   <p className={classes.error}>
@@ -146,22 +187,26 @@ const MopForm = () => {
                       touched.patrolDate &&
                       errors.patrolDate}
                   </p>
+                
                   <div className={classes.timeContainer}>
+                  
                     <TimePick
-                      name={"startTimes"}
+                      name="startTimes"
                       value={values.startTimes}
                       onChange={(time) => setFieldValue("startTimes", time)}
                       onBlur={handleBlur}
                       holder={"Start Time"}
                     />
+                   
                     <TimePick
-                      name={"endTimes"}
+                      name="endTimes"
                       value={values.endTimes}
                       onChange={(time) => setFieldValue("endTimes", time)}
                       onBlur={handleBlur}
                       holder="End Time"
                     />
                   </div>
+                
                   <p className={classes.error}>
                     {errors.startTimes &&
                       touched.startTimes &&
@@ -171,9 +216,9 @@ const MopForm = () => {
                     {errors.endTimes && touched.endTimes && errors.endTimes}
                   </p>
                   <div className={classes.postselect}>
-                  <PostSelect
-                    
-                    name="patrolStartPoint"
+                   
+                  <PostSelect  
+                    name={"patrolStartPoint"}
                     onUpdate={(val) => setFieldValue("patrolStartPoint", val)}
                   />
                   <p className={classes.error}>
@@ -183,10 +228,13 @@ const MopForm = () => {
                   </p>
                   </div>
                   <div className={classes.postselect}>
+                   
+                   
                   <VehicleSelect
                     name={"patrolVehicle"}
                     onUpdate={(val) => setFieldValue("patrolVehicle", val)}
                   />
+                   
                   <p className={classes.error}>
                     {errors.patrolVehicle &&
                       touched.patrolVehicle &&
@@ -195,7 +243,6 @@ const MopForm = () => {
                   </div>
                   <div className={classes.postselect}>
                   <PersonnelSelect
-                    name={"addPersonnel"}
                     onUpdate={(val) => setFieldValue("addPersonnel", val)}
                   />
                   <p className={classes.error}>

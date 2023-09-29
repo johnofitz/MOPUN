@@ -1,5 +1,5 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import MopPage from './pages/MopPage';
+import MopPage, { action as patrolInfo} from './pages/MopPage';
 import RootLayout from "./pages/Root";
 import ErrorPage from "./pages/ErrorPage";
 import LoginPage, { action as authAction} from "./pages/LoginPage";
@@ -21,7 +21,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <LoginPage />, action: authAction},
       
-      { path: "mop", element: <MopPage /> },
+      { path: "mop", element: <MopPage />, action: patrolInfo},
       
       { path: "toc", element: <TocPage /> },
 

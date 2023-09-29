@@ -10,8 +10,8 @@ const MainNav = () => {
     return null;
   }
   return (
-    <Navbar bg="light" expand="lg">
-      <Container>
+    <Navbar bg="light" expand="lg"  className={classes["nav-link-custom"]}>
+      <Container fluid>
         <Navbar.Brand>
           <img
             src={require("../images/irishPoll.png")}
@@ -22,8 +22,8 @@ const MainNav = () => {
         <Navbar.Toggle aria-controls="navbar-nav" />
         <Navbar.Collapse id="navbar-nav">
           <Nav className="me-auto">
-          <Nav.Link as={Link} to="/toc">
-              Toc Home
+          <Nav.Link as={Link} to="/toc" >
+              Toc
             </Nav.Link>
             <Nav.Link as={Link} to="/commop">
               Operator

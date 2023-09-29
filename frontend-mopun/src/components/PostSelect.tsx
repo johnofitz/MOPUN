@@ -31,8 +31,8 @@ const PostSelect = (props: PostSelectProps) => {
   ];
 
   return (
-    <Select
   
+    <Select
     id="patrolStartPoint"
     showSearch
     bordered
@@ -42,6 +42,7 @@ const PostSelect = (props: PostSelectProps) => {
     optionFilterProp="children"
     onChange={(val) => props.onUpdate(val)}
     onSearch={onSearch}
+  
     >
       {options.map((option) => (
         <Select.Option key={option.key} value={option.value}>

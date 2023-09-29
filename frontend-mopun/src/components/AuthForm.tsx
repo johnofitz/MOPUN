@@ -1,78 +1,111 @@
-import { Field, Formik } from "formik";
-import * as Yup from "yup";
+import { useEffect, useState } from "react";
 import classes from "./AuthForm.module.css";
 import { Form } from "react-router-dom";
-
-const schema = Yup.object().shape({
-  username: Yup.string().required("Username is a required field"),
-  password: Yup.string().required("Password is a required field"),
-});
+import useInput from "../hooks/input";
+import { FaUserAlt, FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Auth = () => {
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  // object destructuring to pull out the key values
+  const {
+    value: enteredUser,
+    hasError: inputHasError,
+    isValid: userIsValid,
+    inputChangeHandler: userChangeHandle,
+    inputBlurHandler: userBlurHandle,
+    reset: resetInput,
+  } = useInput((value: any) => value.trim() !== "");
+
+  const {
+    value: enteredPassword,
+    hasError: passwordError,
+    isValid: passwordValid,
+    inputChangeHandler: passwordChangeHandle,
+    inputBlurHandler: passwordBlurHandle,
+    reset: resetPassword,
+  } = useInput((value: any) => value.trim() !== "");
+
+  // useState for overall form validation
+  const [formIsValid, setFormIsValid] = useState(false);
+
+  useEffect(() => {
+    if (userIsValid && passwordValid) {
+      setFormIsValid(true);
+    } else {
+      setFormIsValid(false);
+    }
+  }, [userIsValid, passwordValid]);
+
   return (
     <>
-      <Formik
-        initialValues={{
-          username: "",
-          password: "",
-        }}
-        validationSchema={schema}
-        onSubmit={(values) => {
-          console.log(values);
-        }}
-      >
-        {({ isSubmitting, touched, errors, handleBlur, handleChange }) => (
-          <div className={classes.login}>
-            <div className={classes.form}>
-              <Form method="post">
-                <div className={classes.heading}>
-                  <img
-                    src={require("../images/irishPoll.png")}
-                    alt="profile-img"
-                    className={classes.images}
-                  />
-                </div>
-
-                <Field
+      <Form method="post">
+        <div className={classes.login}>
+          <div className={classes.form}>
+            <div className={classes.formInputs}>
+              <div className={classes.wrapper}>
+                <FaUserAlt className={classes.icon}></FaUserAlt>
+                <input
                   type="text"
                   id="username"
                   name="username"
                   placeholder="Username"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
                   className="form-control inp_text"
+                  onChange={userChangeHandle}
+                  onBlur={userBlurHandle}
+                  value={enteredUser}
                 />
-                <p className={classes.error}>
-                  {errors.username && touched.username && errors.username}
-                </p>
-
-                <Field
-                  type="password"
+              </div>
+              {inputHasError && (
+                <p className={classes.error}>Please enter a valid name.</p>
+              )}
+              <div className={classes.wrapper}>
+                <input
+                  type={showPassword ? 'text' : 'password'}
                   id="password"
                   name="password"
                   placeholder="Password"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
                   className="form-control"
+                  onChange={passwordChangeHandle}
+                  onBlur={passwordBlurHandle}
+                  value={enteredPassword}
                 />
-                <p className={classes.error}>
-                  {errors.password && touched.password && errors.password}
-                </p>
-
-                <button
-                  type="submit"
-                  className={classes.logbutton}
-                  disabled={
-                    isSubmitting || !(touched.username && touched.password)
-                  }
+                <span
+                  className="password-toggle"
+                  onClick={togglePasswordVisibility}
                 >
-                  Login
-                </button>
-              </Form>
+                  {showPassword ? <FaEyeSlash className={classes.icon}/> : <FaEye className={classes.icon}/>}
+                </span>
+              </div>
+              {passwordError && (
+                <p className={classes.error}>Please enter a valid Password</p>
+              )}
+              <div className={classes.buttoncontain}>
+                <div className="form-actions">
+                  <button
+                    type="submit"
+                    className={classes.logbutton}
+                    disabled={!formIsValid}
+                  >
+                    Login
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div className={classes.images}>
+              <img
+                src={require("../images/irishPoll.png")}
+                alt="profile-img"
+                className={classes.images}
+              />
             </div>
           </div>
-        )}
-      </Formik>
+        </div>
+      </Form>
     </>
   );
 };

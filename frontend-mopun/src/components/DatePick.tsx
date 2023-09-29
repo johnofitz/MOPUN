@@ -2,7 +2,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 interface CustomDateProps{ 
-    name: string;
+  
     value: Date | null;
     onChange: (date: Date | null) => void;
     onBlur: (e: React.FocusEvent<any, Element> | null) => void;
@@ -13,6 +13,7 @@ const CustomeDatePicker  = (props: CustomDateProps) =>{
         id="patrolDate"
         selected={props.value}
         onChange={(date) => props.onChange(date)}
+        name ="patrolDate"
         onBlur={props.onBlur}
         placeholderText="Patrol Date"
         withPortal
