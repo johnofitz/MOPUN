@@ -1,34 +1,31 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import MopPage from './pages/MopPage';
+import MopPage, { action as patrolInfo } from "./pages/MopPage";
 import RootLayout from "./pages/Root";
 import ErrorPage from "./pages/ErrorPage";
-import LoginPage, { action as authAction} from "./pages/LoginPage";
+import LoginPage, { action as authAction } from "./pages/LoginPage";
 import { Logout } from "./pages/Logout";
 import { TokenLoader } from "./services/Auth";
 import TocPage from "./pages/TocPage";
 import CommcenPage from "./pages/CommcenPage";
 
-
+import TripPage from "./pages/TripsPage";
+import EditTripPage from "./pages/EditTripPage";
+import TripDetailPage from "./pages/TripDetailPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
     errorElement: <ErrorPage />,
-    id: 'root',
+    id: "root",
     loader: TokenLoader,
     children: [
-      { index: true, element: <LoginPage />, action: authAction},
-      
-      { path: "mop", element: <MopPage /> },
-      
+      { index: true, element: <LoginPage />, action: authAction },
+      { path: "mop", element: <MopPage />, action: patrolInfo },
       { path: "toc", element: <TocPage /> },
-
       { path: "commop", element: <CommcenPage /> },
-      {
-        path: "logout",
-       action: Logout,
-      },
+      { path: "tripDetails/:tripId", element: <TripDetailPage />},
+      { path: "logout", action: Logout },
     ],
   },
 ]);

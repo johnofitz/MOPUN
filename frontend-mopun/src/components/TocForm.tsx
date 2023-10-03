@@ -1,8 +1,11 @@
+import TripList from "./TripList"
 
 
 const TocForm =()=>{
    return (
-    <h1>TOC</h1>
+   
+    <TripList/>
+    
    )
 }
 export default TocForm

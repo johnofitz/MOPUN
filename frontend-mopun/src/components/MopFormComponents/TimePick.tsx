@@ -23,6 +23,7 @@ const TimePick: React.FC<CustomTimeProps> = (props) => {
       format="HH:mm"
       minuteStep={15}
       placeholder={props.holder}
+      name="startTimes"
     />
   );
 };

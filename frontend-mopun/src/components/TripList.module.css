@@ -1,0 +1,53 @@
+
+
+
+/* TripList.css */
+.table {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  border-radius: 10px;
+  max-width: 80%;
+  margin: 20px auto 100px;
+  text-align: center;
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 16px; /* Increase font size */
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+}
+
+.table th, td {
+  border: 1px solid #ddd;
+  padding: 12px; /* Increase padding for better spacing */
+  text-align: center;
+  border-radius: 5px; /* Add rounded edges to cells */
+  font-size: large;
+}
+
+.table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.table th {
+  background-color: slategrey;
+  color: white;
+  font-weight: bold; /* Make header text bold */
+}
+
+
+  
+  .sort-button {
+    background-color: transparent;
+    border: none;
+    padding: 5px 10px;
+    margin: 0;
+    line-height: 1;
+    font-size: 15px;
+    color: black;
+    cursor: pointer;
+    transition: transform 0.05s ease-out;
+  }
+  
+  .sort-reverse {
+    transform: rotate(180deg);
+  }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MOPUN.Data;
 using MOPUN.Models;
@@ -14,14 +9,24 @@ namespace MOPUN.Controllers
     [ApiController]
     public class AccountsController : ControllerBase
     {
+
+        // Object for Database connection
         private readonly MOPUNDB _context;
 
+        /// <summary>
+        /// Constructor instantiates DB object
+        /// </summary>
+        /// <param name="context"></param>
         public AccountsController(MOPUNDB context)
         {
             _context = context;
         }
 
-        // GET: api/Accounts
+        /// <summary>
+        /// Method used to return a list of accounts,
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Accounts>>> GetAccounts()
         {
@@ -32,7 +37,12 @@ namespace MOPUN.Controllers
             return await _context.Accounts.ToListAsync();
         }
 
-        // GET: api/Accounts/5
+        /// <summary>
+        /// Method used to return an account based on the ID parameter 
+        /// passed to the method
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<Accounts>> GetAccounts(int id)
         {
@@ -50,8 +60,7 @@ namespace MOPUN.Controllers
             return accounts;
         }
 
-        // PUT: api/Accounts/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAccounts(int id, Accounts accounts)
         {
@@ -81,9 +90,12 @@ namespace MOPUN.Controllers
             return NoContent();
         }
 
-        // POST: api/Accounts
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        /// <summary>
+        /// Method use to POST a new account
+        /// </summary>
+        /// <param name="accounts"></param>
+        /// <returns></returns>
+        [HttpPost("AddAccount")]
         public async Task<ActionResult<Accounts>> PostAccounts(Accounts accounts)
         {
           if (_context.Accounts == null)
@@ -96,7 +108,11 @@ namespace MOPUN.Controllers
             return CreatedAtAction("GetAccounts", new { id = accounts.ID }, accounts);
         }
 
-        // DELETE: api/Accounts/5
+        /// <summary>
+        /// Method used to delete an account from Database
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAccounts(int id)
         {
@@ -116,6 +132,11 @@ namespace MOPUN.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Private method to chek if account existe returns true/false
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         private bool AccountsExists(int id)
         {
             return (_context.Accounts?.Any(e => e.ID == id)).GetValueOrDefault();

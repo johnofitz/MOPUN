@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using MOPUN.Data;
@@ -53,6 +53,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+};
+
 // Redirect HTTP requests to HTTPS.
 app.UseHttpsRedirection();
 
@@ -62,5 +68,7 @@ app.UseAuthorization();
 
 // Map controllers for handling incoming requests.
 app.MapControllers();
+
+
 
 app.Run();
