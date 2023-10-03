@@ -20,7 +20,7 @@ namespace MOPUN.Controllers
         }
 
 
-        [HttpGet]
+        [HttpGet("getTrips")]
         public async Task<ActionResult<IEnumerable<TripTickets>>> GetAccounts()
         {
             if (_context.TripTickets == null)
@@ -36,7 +36,7 @@ namespace MOPUN.Controllers
         [HttpGet("{tripId}")]
         public async Task<ActionResult<TripTicketInfoDTO>> GetTrip(int tripId)
         {
-            var tripInfo = await _context.TripTickets
+           var tripInfo = await _context.TripTickets
                 .Where(t => t.TripId == tripId)
                 .Select(t => new TripTicketInfoDTO
                 {

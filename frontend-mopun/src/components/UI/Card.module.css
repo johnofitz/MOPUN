@@ -1,0 +1,16 @@
+.card {
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(232, 16, 16, 0.5); /* Added transparency to the shadow */
+    background-color: #fff; /* Added a white background color */
+    padding: 20px; /* Added some padding for content inside the card */
+    border: 2px solid #e81010; /* Added a border with a slightly different red color */
+    transition: transform 0.2s ease-in-out; /* Added a smooth hover effect */
+    width: fit-content;
+    /* Center text and give it a nice font */
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.card:hover {
+    transform: scale(1.05); /* Scale the card up on hover for a nice effect */
+}

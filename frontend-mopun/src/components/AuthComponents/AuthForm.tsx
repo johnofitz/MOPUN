@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import classes from "./AuthForm.module.css";
 import { Form } from "react-router-dom";
-import useInput from "../hooks/input";
+import useInput from "../../hooks/input";
 import { FaUserAlt, FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Auth = () => {
+  
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -18,7 +19,6 @@ const Auth = () => {
     isValid: userIsValid,
     inputChangeHandler: userChangeHandle,
     inputBlurHandler: userBlurHandle,
-    reset: resetInput,
   } = useInput((value: any) => value.trim() !== "");
 
   const {
@@ -27,7 +27,6 @@ const Auth = () => {
     isValid: passwordValid,
     inputChangeHandler: passwordChangeHandle,
     inputBlurHandler: passwordBlurHandle,
-    reset: resetPassword,
   } = useInput((value: any) => value.trim() !== "");
 
   // useState for overall form validation
@@ -46,6 +45,7 @@ const Auth = () => {
       <Form method="post">
         <div className={classes.login}>
           <div className={classes.form}>
+            
             <div className={classes.formInputs}>
               <div className={classes.wrapper}>
                 <FaUserAlt className={classes.icon}></FaUserAlt>
@@ -65,7 +65,7 @@ const Auth = () => {
               )}
               <div className={classes.wrapper}>
                 <input
-                  type={showPassword ? 'text' : 'password'}
+                  type={showPassword ? "text" : "password"}
                   id="password"
                   name="password"
                   placeholder="Password"
@@ -78,7 +78,11 @@ const Auth = () => {
                   className="password-toggle"
                   onClick={togglePasswordVisibility}
                 >
-                  {showPassword ? <FaEyeSlash className={classes.icon}/> : <FaEye className={classes.icon}/>}
+                  {showPassword ? (
+                    <FaEyeSlash className={classes.icon} />
+                  ) : (
+                    <FaEye className={classes.icon} />
+                  )}
                 </span>
               </div>
               {passwordError && (
@@ -98,7 +102,7 @@ const Auth = () => {
             </div>
             <div className={classes.images}>
               <img
-                src={require("../images/irishPoll.png")}
+                src={require("../../images/irishPoll.png")}
                 alt="profile-img"
                 className={classes.images}
               />

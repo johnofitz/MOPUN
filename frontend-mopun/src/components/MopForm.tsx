@@ -1,13 +1,13 @@
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
-import classes from "./MopForm.module.css";
-import DatePick from "./DatePick";
-import RadioButtons from "./RadioButtonComponent";
-import TimePick from "./TimePick";
-import PostSelect from "./PostSelect";
-import VehicleSelect from "./VehicleSelect";
-import PersonnelSelect from "./PersonnelSelect";
-import { redirect } from "react-router-dom";
+import classes from "./MopFormComponents/MopForm.module.css";
+import DatePick from "./MopFormComponents/DatePick";
+import RadioButtons from "./MopFormComponents/RadioButtonComponent";
+import TimePick from "./MopFormComponents/TimePick";
+import PostSelect from "./MopFormComponents/PostSelect";
+import VehicleSelect from "./MopFormComponents/VehicleSelect";
+import PersonnelSelect from "./MopFormComponents/PersonnelSelect";
+
 
 
 const phoneRegExp =
@@ -32,7 +32,7 @@ const schema = Yup.object().shape({
 });
 
 const MopForm = () => {
-
+  
 
   return (
     <>
@@ -79,14 +79,6 @@ const MopForm = () => {
             console.error("An error occurred:", error);
           }
           resetForm();
-          // setFieldValue("patrolDate", null);
-          // setFieldValue("startTimes", null);
-          // setFieldValue("endTimes", null);
-          // setFieldValue("addPersonnel", []);
-          // setFieldValue("patrolVehicle", []);
-          // setIsSubmitted(true);
-          // setRedirectPath("/toc")
-          //redirect("/toc")
         
         }}
         

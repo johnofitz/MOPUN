@@ -1,4 +1,10 @@
+import { json } from "react-router-dom";
+import TripList from "./TripList";
+
 const Commcen = () => {
-  return <h1>Commcen</h1>;
+  return (
+    <TripList/>
+  )
 };
 export default Commcen;
+

@@ -17,13 +17,13 @@ body {
 .form {
   background: #FFFFFF;
   border-radius: 10px;
-  width: 900px; /* Increase the width of the form */
+  width: 50%; /* Increase the width of the form */
   max-width: 80%; /* Limit the form's width for responsiveness */
   height: 500px;
   margin: 20px auto; /* Center the form horizontally and provide some spacing */
   display: flex;
   align-items: center;
-  padding: 20px; /* Adjust the padding as needed */
+  padding: 30px; /* Adjust the padding as needed */
 }
 
 .images {
@@ -34,11 +34,13 @@ body {
 
 .formInputs {
   flex: 1; /* Allow the form inputs to take up remaining space */
+  padding-left: 20px;
+  margin-top: 60px;
 }
 
 .form input {
   padding-top: 20px;
-  margin-top: 50px;
+  margin-top: 15px;
   outline: 0;
   background: #f2f2f2;
   width: 70%; /* Reduce the width to make the input fields smaller */ 
@@ -92,7 +94,7 @@ body {
 
 .buttoncontain{
   
-  margin-top: 50px;
+  margin-top: 30px;
 }
 .form p.error {
   margin-left:30px;
