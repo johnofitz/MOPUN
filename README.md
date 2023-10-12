@@ -39,11 +39,11 @@ app.UseCors(policy => policy.AllowAnyHeader()
 
 
 <div style="display: inline-block; margin-right: 20px; margin-bottom: 50px;">
-  <img src="/frontend-mopun/src/images/login.png" alt="Image 1" width="400" height="150" style="display: block;"/>
-  <img src="/frontend-mopun/src/images/form.png" alt="Image 2" width="400" height="150" style="display: block;"/>
+  <img src="/frontend-mopun/src/images/login.png" alt="Image 1" width="300" height="200" style="display: block;"/>
+  <img src="/frontend-mopun/src/images/form.png" alt="Image 2" width="300" height="200" style="display: block;"/>
 </div>
 
 <div style="display: inline-block; margin-right: 20px; margin-bottom: 50px;">
-  <img src="/frontend-mopun/src/images/table.png" alt="Image 1" width="400" height="150" style="display: block;"/>
+  <img src="/frontend-mopun/src/images/table.png" alt="Image 1" width="300" height="200" style="display: block;"/>
   <!-- <img src="" alt="Image 2" width="400" height="150" style="display: block;"/> -->
 </div>
