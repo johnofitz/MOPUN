@@ -11,18 +11,25 @@
   margin: 20px auto 100px;
   text-align: center;
   border-collapse: collapse;
-  width: 100%;
-  font-size: 16px; /* Increase font size */
+  width: 80%;
+  font-size: 20px; /* Increase font size */
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
 }
-
-.table th, td {
-  border: 1px solid #ddd;
-  padding: 12px; /* Increase padding for better spacing */
+.table th{
+  padding: 5px;
   text-align: center;
-  border-radius: 5px; /* Add rounded edges to cells */
-  font-size: large;
+  font-size:x-large;
+  font-family: Georgia;
+  font-weight: lighter;
 }
+ .table td {
+  border-top: 4px solid #ddd; /* Only horizontal border on the right side */
+  padding: 5px;
+  text-align: center;
+  font-size: x-large;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
 
 .table tr:nth-child(even) {
   background-color: #f2f2f2;
@@ -34,6 +41,10 @@
   font-weight: bold; /* Make header text bold */
 }
 
+.p{
+  font-size: xx-large;
+  text-align: center;
+}
 
   
   .sort-button {

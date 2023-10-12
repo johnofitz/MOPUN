@@ -4,6 +4,7 @@ using MOPUN.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MOPUN.Migrations
 {
     [DbContext(typeof(MOPUNDB))]
-    partial class MOPUNDBModelSnapshot : ModelSnapshot
+    [Migration("20231003213835_FK")]
+    partial class FK
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,8 +65,6 @@ namespace MOPUN.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("TripId");
 
                     b.ToTable("PersonnelTrips");
                 });
@@ -151,17 +152,6 @@ namespace MOPUN.Migrations
                     b.HasIndex("TripId");
 
                     b.ToTable("VehicleTrips");
-                });
-
-            modelBuilder.Entity("MOPUN.Models.PersonnelTrips", b =>
-                {
-                    b.HasOne("MOPUN.Models.TripTickets", "TripTickets")
-                        .WithMany()
-                        .HasForeignKey("TripId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("TripTickets");
                 });
 
             modelBuilder.Entity("MOPUN.Models.VehicleTrips", b =>

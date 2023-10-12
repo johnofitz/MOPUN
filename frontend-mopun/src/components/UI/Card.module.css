@@ -11,6 +11,7 @@
     font-family: Arial, sans-serif;
 }
 
+
 .card:hover {
     transform: scale(1.05); /* Scale the card up on hover for a nice effect */
 }

@@ -1,6 +1,6 @@
-import { Suspense } from "react";
-import { Await, Params, defer, json, useParams } from "react-router-dom";
-import TripItem from "../components/TripItem";
+
+import {  useParams } from "react-router-dom";
+import TripItem from "../components/TripDetail";
 
 function TripDetailPage() {
   const { tripId } = useParams<{ tripId: string }>();
@@ -10,9 +10,8 @@ function TripDetailPage() {
 
 
   return (
-    <>
-      <TripItem tripId={tripIdOrDefault} />
-    </>
+     <TripItem tripId={tripIdOrDefault} />
+ 
   );
 }
 

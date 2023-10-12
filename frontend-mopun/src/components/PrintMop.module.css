@@ -1,0 +1,73 @@
+/* Add a new class for the container of the image and heading */
+.headingcontainer {
+    display: flex;
+    justify-content: space-between; /* Push the elements apart */
+    align-items: center; /* Vertically center items */
+  }
+  
+  .images {
+    width: 70px;
+    height: 70px;
+  }
+  
+  /* Updated styles for the .printForm and .container */
+  .printForm {
+    position: relative;
+    z-index: 1;
+    background: #FFFFFF;
+    border-radius: 10px;
+    width: 100%; /* Take up 100% of available width */
+    max-width: 800px; /* Limit the maximum width if needed */
+    margin: 0 auto 100px;
+    padding: 20px; /* Adjust padding as needed */
+    text-align: justify;
+  }
+  
+  .container {
+    width: 100%; /* Take up 100% of available width */
+    max-width: 800px; /* Limit the maximum width if needed */
+    outline: 0;
+    background: #f2f2f2;
+    border: 0;
+    border-radius: 5px;
+    margin: 0 auto;
+    padding: 15px;
+    box-sizing: border-box;
+    margin-bottom: 30px;
+  }
+  
+  .printForm p {
+    outline: 0;
+    width: auto;
+    border: 0;
+    border-radius: 5px;
+    margin: 0 auto 10px;
+    padding: 5px;
+    box-sizing: border-box;
+    font-size: 12px;
+    font-family: 'Comfortaa', sans-serif;
+  }
+
+  .printForm h1 {
+    font-size: 40px;
+    color: #000106a6;
+    margin-bottom: 25px;
+    display: block;
+  }
+
+  .printForm h3 {
+    font-size: 20px;
+    color: #000106a6;
+    margin-bottom: 25px;
+    display: block;
+  }
+
+  
+  .images {
+    width: 70px;
+    height: 70px;
+    margin-right: 10px; /* Add some space between the image and heading */
+  }
+  
+
+ 

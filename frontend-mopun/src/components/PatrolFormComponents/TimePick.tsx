@@ -5,9 +5,9 @@ import dayjs from "dayjs";
 
 interface CustomTimeProps {
   name: string;
-  value: string | null;
+  //value: dayjs.Dayjs | null;
   onChange: (time: string | null) => void;
-  onBlur: (e: React.FocusEvent<HTMLInputElement> | null) => void;
+  //onBlur: (e: React.FocusEvent<HTMLInputElement> | null) => void;
   holder: string;
 }
 
@@ -19,11 +19,12 @@ const TimePick: React.FC<CustomTimeProps> = (props) => {
       id={props.name}
       className={classes.timePicker}
       onChange={(time) => props.onChange(time ? dayjs(time).format("HH:mm") : null)} 
-      onBlur={props.onBlur}
+      //onBlur={props.onBlur}
       format="HH:mm"
       minuteStep={15}
       placeholder={props.holder}
-      name="startTimes"
+      name={props.name}
+      //value={props.value}
     />
   );
 };

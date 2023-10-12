@@ -3,7 +3,8 @@ import { useState } from "react";
 const useInput = (validateValue: any) => {
   // useState to set input
   const [input, setInput] = useState("");
-  // useState to handle input touched
+  // useState to handle input touchedconst [selectedDate, setSelectedDate] = useState<string | null>("");
+
   const [touched, setTouched] = useState(false);
 
   // inferred const to derive validity from above states

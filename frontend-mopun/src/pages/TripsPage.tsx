@@ -1,9 +1,6 @@
-import React from 'react';
 import { Suspense } from 'react';
-import TripList from '../components/TripList';
-import { useLoaderData, useRouteLoaderData } from 'react-router-dom';
+import TripList from '../components/CommcenComponents/TripList';
 
-type TripId = string;
 
 const TripPage = () => {
 

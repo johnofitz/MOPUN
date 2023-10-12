@@ -1,7 +1,29 @@
-.details{
-    padding: 1rem;
+.details {
+    padding: 2rem;
     background-color: #DCAE96;
     margin: 2rem auto;
     width: 50rem;
     max-width: 95%;
-}
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow for depth */
+    border-radius: 8px; /* Add rounded corners for a card-like appearance */
+  }
+  
+  .details h1 {
+    font-size: 2rem; /* Adjust font size to a more standard size */
+    color: #000000a6;
+    margin-bottom: 1rem; /* Reduce spacing below the heading */
+  }
+  
+  .details-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Add space between items */
+    margin-bottom: 1rem; /* Add some spacing below the details heading */
+  }
+  
+  /* Style for the icon (if used in details-heading) */
+  .details-heading i {
+    font-size: 24px; /* Adjust icon size */
+    margin-right: 8px; /* Add spacing between the icon and text */
+  }
+  
