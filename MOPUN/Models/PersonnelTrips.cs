@@ -15,7 +15,11 @@ namespace MOPUN.Models
         [Required]
         public string BunkerNum { get; set; }
 
-        [Required]
+     
         public int TripId { get; set; }
+
+       
+        [ForeignKey("TripId")]
+        public virtual TripTickets TripTickets { get; set; }
     }
 }

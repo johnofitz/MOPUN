@@ -2,7 +2,7 @@
 
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-
+using System.Text.Json.Serialization;
 
 namespace MOPUN.Models
 {
@@ -54,15 +54,20 @@ namespace MOPUN.Models
         [Required]
         public TimeSpan EndTime { get; set; }
 
+        public bool InCamp { get; set; }
+
+        [Required]
+        public bool Active { get; set; }
+
         
         public DateTime LastDateUpdate {  get; set; } = DateTime.Now.Date;
 
         public TimeSpan LastTimeUpdate { get; set; } = DateTime.Now.TimeOfDay;
 
 
+        public virtual ICollection<VehicleTrips> VehicleTrips { get; set; }
 
-        //    [ForeignKey("TripId")]
-        //  public TripTickets ParentTrip { get; set; }
+        public virtual ICollection<PersonnelTrips> PersonnelTrips { get; set; }
 
     }
 }

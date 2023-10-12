@@ -5,7 +5,7 @@ interface CustomDateProps{
   
     value: Date | null;
     onChange: (date: Date | null) => void;
-    onBlur: (e: React.FocusEvent<any, Element> | null) => void;
+    // onBlur: (e: React.FocusEvent<any, Element> | null) => void;
 }
 const CustomeDatePicker  = (props: CustomDateProps) =>{
     return(
@@ -14,10 +14,11 @@ const CustomeDatePicker  = (props: CustomDateProps) =>{
         selected={props.value}
         onChange={(date) => props.onChange(date)}
         name ="patrolDate"
-        onBlur={props.onBlur}
+        // onBlur={props.onBlur}
         placeholderText="Patrol Date"
         withPortal
         dateFormat='dd/MM/yyyy'
+    
         className="form-control inp_text datepicker"
       />
     )

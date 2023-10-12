@@ -1,13 +1,17 @@
 ﻿#nullable disable
 
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace MOPUN.Models
 {
+    [Table("Personnel")]
     public class Personnel
     {
+        [Key]
+        public int MiNumber { get; set; }
 
         public string BunkerNum { get; set; }
-
-        public string MiNum { get; set; }
 
         public string FirstName { get; set;}
 

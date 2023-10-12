@@ -14,6 +14,8 @@
         public string EndTimes { get; set; }
         public string PatrolMoto { get; set; }
         public string PatrolStartPoint { get; set; }
+
+       
         public List<string> PatrolVehicle { get; set; }
         public List<string> AddPersonnel { get; set; }
     }

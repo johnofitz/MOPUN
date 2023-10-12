@@ -10,6 +10,10 @@
         public string MotoId { get; set; }
         public string Reason { get; set; }
         public string Priority { get; set; }
+
+        public bool Active { get; set; }
+
+        public bool InCamp {  get; set; }
         public DateTime StartDate { get; set; }
         public TimeSpan StartTime { get; set; }
         public TimeSpan EndTime { get; set; }

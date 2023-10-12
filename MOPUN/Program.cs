@@ -37,6 +37,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     };
 });
 
+
+
 var app = builder.Build();
 
 // Enable CORS (Cross-Origin Resource Sharing) to allow requests from any origin.
@@ -68,6 +70,7 @@ app.UseAuthorization();
 
 // Map controllers for handling incoming requests.
 app.MapControllers();
+
 
 
 

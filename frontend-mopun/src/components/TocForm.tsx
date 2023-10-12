@@ -1,4 +1,4 @@
-import TripList from "./TripList"
+import TripList from "./CommcenComponents/TripList"
 
 
 const TocForm =()=>{
