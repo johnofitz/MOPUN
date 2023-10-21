@@ -47,10 +47,25 @@ const TripList = () => {
           console.log("Time: " + timeDifferenceInMinutes);
 
           if (!item[DataTypeKeys.InCamp]) {
-            return timeDifferenceInMinutes > 30 ? "red" : "#08a04b";
-          } else {
-            return "slategrey";
+
+            if(timeDifferenceInMinutes < 15){
+              return "#08a04b"
+            }
+            else if(timeDifferenceInMinutes >15 && timeDifferenceInMinutes < 30 ){
+              return "yellow"
+            }
+            else if(timeDifferenceInMinutes >= 30){
+              return "red";
+            }
+
+            else{
+              return "slategrey";
+            }
           }
+          //   return timeDifferenceInMinutes > 30 ? "red" : "#08a04b";
+          // } else  {
+          //   return "slategrey";
+          // }
         });
 
         setColumnColors(colors);

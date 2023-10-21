@@ -19,6 +19,8 @@
         public TimeSpan EndTime { get; set; }
         public List<string> PersonnelTrips { get; set; }
         public List<string> VehicleTrips { get; set; }
+
+        public List<PersonnelDTO> Personnel { get; set; }
     }
 
 }

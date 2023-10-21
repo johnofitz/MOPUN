@@ -37,30 +37,68 @@ namespace MOPUN.Controllers
         public async Task<ActionResult<TripTicketInfoDTO>> GetTrip(int tripId)
         {
             var tripInfo = await _context.TripTickets
-                 .Where(t => t.TripId == tripId)
-                 .Select(t => new TripTicketInfoDTO
-                 {
-                     TripId = t.TripId,
-                     CallSign = t.CallSign,
-                     Location = t.Location,
-                     LastLocation = t.LastLocation,
-                     Mobile = t.Mobile,
-                     MotoId = t.MotoId,
-                     Reason = t.Reason,
-                     Priority = t.Priority,
-                     StartDate = t.StartDate,
-                     StartTime = t.StartTime,
-                     EndTime = t.EndTime,
-                     PersonnelTrips = _context.PersonnelTrips
-                         .Where(pt => pt.TripId == tripId)
-                         .Select(pt => pt.BunkerNum)
-                         .ToList(),
-                     VehicleTrips = _context.VehicleTrips
-                         .Where(vt => vt.TripId == tripId)
-                         .Select(vt => vt.Registration)
-                         .ToList()
-                 })
-                 .FirstOrDefaultAsync();
+    .Where(t => t.TripId == tripId)
+    .Select(t => new TripTicketInfoDTO
+    {
+        TripId = t.TripId,
+        CallSign = t.CallSign,
+        Location = t.Location,
+        LastLocation = t.LastLocation,
+        Mobile = t.Mobile,
+        MotoId = t.MotoId,
+        Reason = t.Reason,
+        Priority = t.Priority,
+        StartDate = t.StartDate,
+        StartTime = t.StartTime,
+        EndTime = t.EndTime,
+        PersonnelTrips = _context.PersonnelTrips
+            .Where(pt => pt.TripId == tripId)
+            .Select(pt => pt.BunkerNum)
+            .ToList(),
+        VehicleTrips = _context.VehicleTrips
+            .Where(vt => vt.TripId == tripId)
+            .Select(vt => vt.Registration)
+            .ToList(),
+        Personnel = _context.Personnel
+            .Where(p => _context.PersonnelTrips
+                .Where(pt => pt.TripId == tripId)
+                .Select(pt => pt.BunkerNum)
+                .Contains(p.BunkerNum))
+            .Select(p => new PersonnelDTO
+            {
+                FirstName = p.FirstName,
+                LastName = p.LastName
+            })
+            .ToList()
+
+    })
+    .FirstOrDefaultAsync();
+
+            //var tripInfo = await _context.TripTickets
+            //     .Where(t => t.TripId == tripId)
+            //     .Select(t => new TripTicketInfoDTO
+            //     {
+            //         TripId = t.TripId,
+            //         CallSign = t.CallSign,
+            //         Location = t.Location,
+            //         LastLocation = t.LastLocation,
+            //         Mobile = t.Mobile,
+            //         MotoId = t.MotoId,
+            //         Reason = t.Reason,
+            //         Priority = t.Priority,
+            //         StartDate = t.StartDate,
+            //         StartTime = t.StartTime,
+            //         EndTime = t.EndTime,
+            //         PersonnelTrips = _context.PersonnelTrips
+            //             .Where(pt => pt.TripId == tripId)
+            //             .Select(pt => pt.BunkerNum)
+            //             .ToList(),
+            //         VehicleTrips = _context.VehicleTrips
+            //             .Where(vt => vt.TripId == tripId)
+            //             .Select(vt => vt.Registration)
+            //             .ToList()
+            //     })
+            //     .FirstOrDefaultAsync();
 
             if (tripInfo == null)
             {

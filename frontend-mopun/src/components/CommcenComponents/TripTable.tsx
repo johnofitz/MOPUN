@@ -21,6 +21,7 @@ const TripTable: React.FC<TripTableProps> = ({
     { key: DataTypeKeys.MotoId, label: "Moto ID" },
     { key: DataTypeKeys.LastLocation, label: "Location" },
     { key: DataTypeKeys.Priority, label: "Priority" },
+    {key: 'Status', label: "Status"},
     { key: DataTypeKeys.LastTime, label: "Last Update" },
     { key: DataTypeKeys.ActiveDate, label: "Activated On" },
   ];
@@ -46,7 +47,7 @@ const TripTable: React.FC<TripTableProps> = ({
       <TripItem
         key={key}
         item={item}
-        color={columnColors[key]}
+        colur={columnColors[key]}
         onClick={() => onRowClick(item[DataTypeKeys.TripId])}
       />
     );
