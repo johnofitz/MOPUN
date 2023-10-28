@@ -1,11 +1,19 @@
 import { useEffect, useState } from "react";
 import classes from "./AuthForm.module.css";
-import { Form } from "react-router-dom";
+import { Form, useActionData } from "react-router-dom";
 import useInput from "../../hooks/input";
 import { FaUserAlt, FaEye, FaEyeSlash } from "react-icons/fa";
 
+interface Data {
+  errorType?: string;
+  message?: string;
+  // Add other properties as needed
+}
+
+
 const Auth = () => {
-  
+  const data = useActionData() as Data;
+
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -45,7 +53,6 @@ const Auth = () => {
       <Form method="post">
         <div className={classes.login}>
           <div className={classes.form}>
-            
             <div className={classes.formInputs}>
               <div className={classes.wrapper}>
                 <FaUserAlt className={classes.icon}></FaUserAlt>
@@ -63,6 +70,9 @@ const Auth = () => {
               {inputHasError && (
                 <p className={classes.error}>Please enter a valid name.</p>
               )}
+               {data?.errorType === "Username" && (
+                <p className={classes.error}>{data.message}</p>
+              )}
               <div className={classes.wrapper}>
                 <input
                   type={showPassword ? "text" : "password"}
@@ -79,15 +89,26 @@ const Auth = () => {
                   onClick={togglePasswordVisibility}
                 >
                   {showPassword ? (
-                    <FaEyeSlash className={classes.icon} />
-                  ) : (
                     <FaEye className={classes.icon} />
+                  ) : (
+                    <FaEyeSlash className={classes.icon} />
                   )}
                 </span>
               </div>
               {passwordError && (
                 <p className={classes.error}>Please enter a valid Password</p>
               )}
+              {data?.errorType === "Password" && (
+                <p className={classes.error}>{data.message}</p>
+              )}
+              {/* {data?.errors && (
+                <ul>
+                  {Object.keys(data.errors).map((err) => (
+                    <li key={err}>{err}</li>
+                  ))}
+                </ul>
+              )} */}
+
               <div className={classes.buttoncontain}>
                 <div className="form-actions">
                   <button

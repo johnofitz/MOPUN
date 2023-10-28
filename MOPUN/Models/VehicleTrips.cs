@@ -22,6 +22,6 @@ namespace MOPUN.Models
 
 
         [Required]
-        public string Registration { get; set;}
+        public int Registration { get; set;}
     }
 }

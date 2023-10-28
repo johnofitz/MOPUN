@@ -17,10 +17,10 @@
         public DateTime StartDate { get; set; }
         public TimeSpan StartTime { get; set; }
         public TimeSpan EndTime { get; set; }
-        public List<string> PersonnelTrips { get; set; }
-        public List<string> VehicleTrips { get; set; }
-
+    
         public List<PersonnelDTO> Personnel { get; set; }
+
+        public List<VehicleInfoDTO> Vehicle { get; set; }
     }
 
 }

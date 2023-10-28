@@ -6,9 +6,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const MainNav = () => {
   const token: any = useRouteLoaderData("root");
+  const role: any = useRouteLoaderData("root");
   if (!token) {
     return null;
   }
+  console.log("token:" +role)
   return (
     <Navbar bg="light" expand="lg"  className={classes["nav-link-custom"]}>
       <Container fluid>
@@ -27,10 +29,16 @@ const MainNav = () => {
             </Nav.Link>
             <Nav.Link as={Link} to="/commop">
               Operator
+            </Nav.Link>   
+            <Nav.Link as={Link} to="/message">
+              Message Board
             </Nav.Link>
             <Nav.Link as={Link} to="/mop">
+              Gate
+            </Nav.Link> 
+            <Nav.Link as={Link} to="/mop">
               Patrol Form
-            </Nav.Link>    
+            </Nav.Link> 
           </Nav>
           {token && (
             <Form action="/logout" method="post">

@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import TripTable from "./TripTable";
+import TocTable from "./TocTable";
 import { DataType, DataTypeKeys } from "../../services/Types";
 import { fetchData } from "../../hooks/Grequest";
 
-const TripList = () => {
+const TocList = () => {
   const navigate = useNavigate();
   const [data, setData] = useState<DataType[]>([]);
   const [columnColors, setColumnColors] = useState<string[]>([]);
@@ -84,7 +84,7 @@ const TripList = () => {
   };
 
   return (
-    <TripTable
+    <TocTable
       data={data}
       columnColors={columnColors}
       onRowClick={handleRowClick}
@@ -92,4 +92,4 @@ const TripList = () => {
   );
 };
 
-export default TripList;
+export default TocList;

@@ -1,5 +1,5 @@
 import React from "react";
-import CommcenDate from "./CommcenDate";
+import CommcenDate from "../CommcenComponents/CommcenDate";
 import { DataType, DataTypeKeys } from "../../services/Types";
 
 
@@ -12,8 +12,13 @@ interface TripItemProps {
 const TripItem: React.FC<TripItemProps> = ({ item, colur, onClick }) => {
  
   return (
+
+   
+    <>
+    
     <tr onClick={onClick} style={{ cursor: "pointer" }}>
       <td>{item[DataTypeKeys.CallSign]}</td>
+      <td>{item[DataTypeKeys.InCamp]}</td>
       <td>{item[DataTypeKeys.Reason]}</td>
       <td>{item[DataTypeKeys.MotoId]}</td>
       <td>{item[DataTypeKeys.Location]}</td>
@@ -30,6 +35,8 @@ const TripItem: React.FC<TripItemProps> = ({ item, colur, onClick }) => {
         ></CommcenDate>
       </td>
     </tr>
+    </>
+
   );
 };
 export default TripItem;

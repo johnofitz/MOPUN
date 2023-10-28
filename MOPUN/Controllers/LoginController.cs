@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using MOPUN.Data;
 using MOPUN.Models;
 using MOPUN.Services;
+using System.Linq;
 #nullable disable
 
 namespace MOPUN.Controllers
@@ -64,22 +65,37 @@ namespace MOPUN.Controllers
         /// </summary>
         /// <param name="userLogin"></param>
         /// <returns>JWT token</returns>
+
         [AllowAnonymous]
         [HttpPost("SignIn")]
-   
         public IActionResult Login([FromBody] AccountLogin userLogin)
         {
             
+            var user = _context.Accounts.FirstOrDefault(a => a.Username == userLogin.Username);
+
+            if (user == null)
+            {
+                return NotFound(new { errorType = "Username", message = "User not found" });
+            }
+
+            if (user.Password != userLogin.Password)
+            {
+                return NotFound(new { errorType = "Password", message = "Incorrect password" });
+            }
+
             var jwtResponse = Authenticate(userLogin);
+
             if (jwtResponse != null)
             {
                 return Ok(jwtResponse);
             }
 
-            return NotFound("user not found");
+            // If authentication fails for other reasons, return an error response
+            return BadRequest(new { message = "Authentication failed" });
         }
 
-        
+
+
         /// <summary>
         ///  Private method used to Authenticate user and generate JWT token for 
         ///  frontend use on authorization

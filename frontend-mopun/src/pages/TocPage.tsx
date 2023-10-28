@@ -1,11 +1,12 @@
 import { json, redirect } from "react-router-dom";
 import PatrolForm from "../components/PatrolForm";
+import TocList from "../components/TocComponents/TocList";
 
 
 const TocPage = () => {
   return (
     <>
-      <PatrolForm />
+      <TocList />
     </>
   );
 };
