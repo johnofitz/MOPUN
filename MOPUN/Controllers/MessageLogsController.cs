@@ -79,7 +79,7 @@ namespace MOPUN.Controllers
         // POST: api/MessageLogs
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost("AddMessage")]
-        public async Task<ActionResult<MessageLog>> PostMessageLog(MessageRequest message)
+        public async Task<ActionResult<MessageRequest>> PostMessageLog(MessageRequest message)
         {
             // Check if ModelState is valid (e.g., for data validation attributes)
             if (!ModelState.IsValid)
@@ -94,6 +94,7 @@ namespace MOPUN.Controllers
                     CallSign = message.CallSign?.ToUpper(),
                     Message = message.Message?.ToUpper()
                 };
+
                 _context.MessageLog.Add(newMessage);
                 await _context.SaveChangesAsync();
             }
@@ -101,8 +102,6 @@ namespace MOPUN.Controllers
             {
                 Console.WriteLine("Test");
             }
-            
-
             return Ok("Trip ticket created successfully");
         }
 

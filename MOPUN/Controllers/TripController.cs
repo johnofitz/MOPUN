@@ -196,12 +196,47 @@ namespace MOPUN.Controllers
             return NoContent();
         }
 
-        //// DELETE api/<TripController>/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
 
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteAccounts(int id)
+        {
+            if (_context.TripTickets == null)
+            {
+                return NotFound();
+            }
+
+            var vtrip = await _context.VehicleTrips.FindAsync(id);
+            if (vtrip == null)
+            {
+                return NotFound();
+            }
+
+            _context.VehicleTrips.Remove(vtrip);
+
+            await _context.SaveChangesAsync();
+
+            var ptrip = await _context.PersonnelTrips.FindAsync(id);
+
+            if (ptrip == null)
+            {
+                return NotFound();
+            }
+
+            _context.PersonnelTrips.Remove(ptrip);
+            await _context.SaveChangesAsync();
+
+            var trip = await _context.TripTickets.FindAsync(id);
+           
+            if (trip == null)
+            {
+                return NotFound();
+            }
+
+            _context.TripTickets.Remove(trip);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
         private bool AccountsExists(int id)
         {
             return (_context.TripTickets?.Any(e => e.TripId == id)).GetValueOrDefault();

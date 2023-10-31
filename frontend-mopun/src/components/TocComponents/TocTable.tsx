@@ -1,4 +1,3 @@
-// TripTable.tsx
 import React from "react";
 import classes from "../CommcenComponents/TripList.module.css";
 import { DataType, DataTypeKeys } from "../../services/Types";
@@ -10,19 +9,14 @@ interface TripTableProps {
   onRowClick: (tripId: string) => void; // Function to handle row clicks
 }
 
-const TocTable: React.FC<TripTableProps> = ({
-  data,
-  columnColors,
-  onRowClick,
-}) => {
+const TocTable: React.FC<TripTableProps> = ({ data, columnColors, onRowClick }) => {
   const headers = [
     { key: DataTypeKeys.CallSign, label: "Call Sign" },
-    {key:'PAX', label: 'PAX'},
     { key: DataTypeKeys.Reason, label: "Reason" },
     { key: DataTypeKeys.MotoId, label: "Moto ID" },
     { key: DataTypeKeys.LastLocation, label: "Location" },
     { key: DataTypeKeys.Priority, label: "Priority" },
-    {key: 'Status', label: "Status"},
+    { key: 'Status', label: "Status" },
     { key: DataTypeKeys.LastTime, label: "Last Update" },
     { key: DataTypeKeys.ActiveDate, label: "Activated On" },
   ];
@@ -31,37 +25,72 @@ const TocTable: React.FC<TripTableProps> = ({
     return <p className={classes.p}>No Active Patrols</p>; // Display a "No Data" message
   }
 
+  // Group indices by colors
+  const colorIndices: { [key: string]: number[] } = {};
+  columnColors.forEach((color, index) => {
+    if (!colorIndices[color]) {
+      colorIndices[color] = [];
+    }
+    colorIndices[color].push(index);
+  });
+
+  const blueIndices = colorIndices["blue"] || [];
+  const activeIndices: number[] = [];
+
+  // Retrieve indices for colors other than "blue"
+  Object.keys(colorIndices).forEach((color) => {
+    if (color !== "blue") {
+      activeIndices.push(...colorIndices[color]);
+    }
+  });
+
   return (
     <>
-    <h1>Active</h1>
-    <table className={classes.table}>
-      <thead>
-        <tr>
-          {headers.map((header, index) => (
-            <th key={index}>{header.label}</th>
-          ))}
-        </tr>
-      </thead>
+      <div>
+        <h1 className={classes.h1}>Active</h1>
+        <table className={classes.table}>
+          <thead>
+            <tr>
+              {headers.map((header, index) => (
+                <th key={index}>{header.label}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {activeIndices.map((index) => (
+              <TocItem
+                key={index}
+                item={data[index]}
+                colur={columnColors[index]}
+                onClick={() => onRowClick(data[index][DataTypeKeys.TripId])}
+              />
+            ))}
+          </tbody>
+        </table>
+      </div>
 
-      <tbody>
-      {data.map((item, key) => {
-  if (item.active) {
-    return (
-      <TocItem
-        key={key}
-        item={item}
-        colur={columnColors[key]}
-        onClick={() => onRowClick(item[DataTypeKeys.TripId])}
-      />
-    );
-  } else {
-    console.log(`Skipping item with key ${key} because Active is not true.`);
-    return null;
-  }
-})}
-
-      </tbody>
-    </table>
+      <div>
+        <h1 className={classes.h1}>PENDING</h1>
+        <table className={classes.table}>
+          <thead>
+            <tr>
+              {headers.map((header, index) => (
+                <th key={index}>{header.label}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {blueIndices.map((index) => (
+              <TocItem
+                key={index}
+                item={data[index]}
+                colur={columnColors[index]}
+                onClick={() => onRowClick(data[index][DataTypeKeys.TripId])}
+              />
+            ))}
+          </tbody>
+        </table>
+      </div>
     </>
   );
 };

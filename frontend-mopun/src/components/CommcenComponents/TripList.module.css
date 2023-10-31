@@ -46,7 +46,9 @@
   text-align: center;
 }
 
-  
+.h1{
+  text-align: center;
+}  
   .sort-button {
     background-color: transparent;
     border: none;
