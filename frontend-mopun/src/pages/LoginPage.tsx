@@ -22,9 +22,13 @@ export const action = async ({ request }: { request: Request }) => {
       password: data.get("password"),
     }),
   });
-  if (response.status === 422 || response.status === 402) {
-    return json({ message: "Validation error" }, { status: response.status });
-  }
+  
+  if (response.status === 422 || response.status === 404) {
+    const jsonData = await response.json(); // Wait for the JSON parsing
+    console.log(jsonData); // Logging the JSON response
+    return jsonData; // Return the parsed JSON data
+}
+
   if (!response.ok) {
     return json({ message: "Server error" }, { status: 500 });
   }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import classes from '../components/TripDetail.module.css'
 interface MessageInputProps {
   onSendMessage: (message: string) => void;
 }
@@ -26,18 +26,18 @@ const MessageInput: React.FC<MessageInputProps> = ({ onSendMessage }) => {
   };
 
   return (
-   
-    <div className="message-input">
+   <>
+    <div>
       <textarea
         placeholder="Type your message..."
         value={message}
         onChange={handleInputChange}
-      
-        style={{ height: '80px' ,width: '300px'}} // Set the height to your desired value
+        className={classes.messageInput}
       />
-      <button onClick={handleSendMessage}>Send</button>
+    
     </div>
-
+  <button onClick={handleSendMessage} className={classes.messbutton}>Send</button>
+  </>
   );
 };
 

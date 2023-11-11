@@ -19,7 +19,7 @@ namespace MOPUN.Controllers
             _context = context;
         }
 
-        
+
         [HttpGet("getTrips")]
         public async Task<ActionResult<IEnumerable<TripTickets>>> GetAccounts()
         {
@@ -37,30 +37,46 @@ namespace MOPUN.Controllers
         public async Task<ActionResult<TripTicketInfoDTO>> GetTrip(int tripId)
         {
             var tripInfo = await _context.TripTickets
-                 .Where(t => t.TripId == tripId)
-                 .Select(t => new TripTicketInfoDTO
-                 {
-                     TripId = t.TripId,
-                     CallSign = t.CallSign,
-                     Location = t.Location,
-                     LastLocation = t.LastLocation,
-                     Mobile = t.Mobile,
-                     MotoId = t.MotoId,
-                     Reason = t.Reason,
-                     Priority = t.Priority,
-                     StartDate = t.StartDate,
-                     StartTime = t.StartTime,
-                     EndTime = t.EndTime,
-                     PersonnelTrips = _context.PersonnelTrips
-                         .Where(pt => pt.TripId == tripId)
-                         .Select(pt => pt.BunkerNum)
-                         .ToList(),
-                     VehicleTrips = _context.VehicleTrips
-                         .Where(vt => vt.TripId == tripId)
-                         .Select(vt => vt.Registration)
-                         .ToList()
-                 })
-                 .FirstOrDefaultAsync();
+            .Where(t => t.TripId == tripId)
+            .Select(t => new TripTicketInfoDTO
+            {
+                TripId = t.TripId,
+                CallSign = t.CallSign,
+                Location = t.Location,
+                LastLocation = t.LastLocation,
+                Mobile = t.Mobile,
+                MotoId = t.MotoId,
+                Reason = t.Reason,
+                Priority = t.Priority,
+                StartDate = t.StartDate,
+                StartTime = t.StartTime,
+                EndTime = t.EndTime,
+                Personnel = _context.Personnel
+                    .Where(p => _context.PersonnelTrips
+                        .Where(pt => pt.TripId == tripId)
+                        .Select(pt => pt.BunkerNum)
+                        .Contains(p.BunkerNum))
+                    .Select(p => new PersonnelDTO
+                    {
+                        FirstName = p.FirstName,
+                        LastName = p.LastName,
+                        BunkerNum = p.BunkerNum
+                    }).ToList(),
+
+                Vehicle = _context.Vehicles
+                .Where(v => _context.VehicleTrips
+                .Where(vt => vt.TripId == tripId)
+                .Select(vt => vt.Registration)
+                .Contains(v.Registration))
+                .Select(v => new VehicleInfoDTO
+                {
+                    Make = v.Make,
+                    Model = v.Model,
+                    Registration = v.Registration
+                }).ToList()
+
+            })
+            .FirstOrDefaultAsync();
 
             if (tripInfo == null)
             {
@@ -143,19 +159,26 @@ namespace MOPUN.Controllers
         }
 
         // PUT: api/TripTickets/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutTripTicket(int id)
+        [HttpPut("Active/{id}")]
+        public async Task<IActionResult> PutTripTicket(string id)
         {
-            var tripTicket = await _context.TripTickets.FindAsync(id);
+            int ID = int.Parse(id);
+
+            var tripTicket = await _context.TripTickets.FindAsync(ID);
 
             if (tripTicket == null)
             {
                 return NotFound();
             }
-
-            // Update the Active property to true
-            tripTicket.Active = true;
-
+            if (tripTicket.Active)
+            {
+                tripTicket.Active = false;
+            }
+            else
+            {
+                // Update the Active property to true
+                tripTicket.Active = true;
+            }
             // Update the LastDateUpdate and LastTimeUpdate properties
             tripTicket.LastDateUpdate = DateTime.Now.Date;
             tripTicket.LastTimeUpdate = DateTime.Now.TimeOfDay;
@@ -173,12 +196,47 @@ namespace MOPUN.Controllers
             return NoContent();
         }
 
-        //// DELETE api/<TripController>/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
 
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteAccounts(int id)
+        {
+            if (_context.TripTickets == null)
+            {
+                return NotFound();
+            }
+
+            var vtrip = await _context.VehicleTrips.FindAsync(id);
+            if (vtrip == null)
+            {
+                return NotFound();
+            }
+
+            _context.VehicleTrips.Remove(vtrip);
+
+            await _context.SaveChangesAsync();
+
+            var ptrip = await _context.PersonnelTrips.FindAsync(id);
+
+            if (ptrip == null)
+            {
+                return NotFound();
+            }
+
+            _context.PersonnelTrips.Remove(ptrip);
+            await _context.SaveChangesAsync();
+
+            var trip = await _context.TripTickets.FindAsync(id);
+           
+            if (trip == null)
+            {
+                return NotFound();
+            }
+
+            _context.TripTickets.Remove(trip);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
         private bool AccountsExists(int id)
         {
             return (_context.TripTickets?.Any(e => e.TripId == id)).GetValueOrDefault();

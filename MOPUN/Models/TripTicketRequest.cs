@@ -16,7 +16,7 @@
         public string PatrolStartPoint { get; set; }
 
        
-        public List<string> PatrolVehicle { get; set; }
+        public List<int> PatrolVehicle { get; set; }
         public List<string> AddPersonnel { get; set; }
     }
 

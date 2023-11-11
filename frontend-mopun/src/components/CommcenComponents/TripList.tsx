@@ -42,17 +42,26 @@ const TripList = () => {
           }
 
           const timeDifferenceInMinutes: number = timeDifference / (1000 * 60);
-          const timeDifferenceInMilliseconds = lastUpdateTime.getTime();
-
-          console.log("Time: " + timeDifferenceInMinutes);
-
+     
           if (!item[DataTypeKeys.InCamp]) {
-            return timeDifferenceInMinutes > 30 ? "red" : "#08a04b";
+            if (!isActive) {
+              return 'blue'; // Set the color to blue when isActive is false
+            } else {
+              if (timeDifferenceInMinutes < 15) {
+                return "#08a04b";
+              } else if (timeDifferenceInMinutes > 15 && timeDifferenceInMinutes < 30) {
+                return "yellow";
+              } else if (timeDifferenceInMinutes >= 30) {
+                return "red";
+              } else {
+                return "slategrey";
+              }
+            }
           } else {
-            return "slategrey";
+            return columnColors[columnColors.length - 1] || "slategrey";
           }
         });
-
+        
         setColumnColors(colors);
       } catch (error) {
         console.error("An error occurred while fetching data:", error);
@@ -61,7 +70,7 @@ const TripList = () => {
 
     fetchDataAndUpdate();
 
-    const intervalId = setInterval(fetchDataAndUpdate, 60000);
+    const intervalId = setInterval(fetchDataAndUpdate, 5000);
 
     return () => {
       clearInterval(intervalId);

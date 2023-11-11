@@ -2,7 +2,7 @@ import { json, redirect } from "react-router-dom";
 import PatrolForm from "../components/PatrolForm";
 
 const MopPage = () => {
-  return <PatrolForm/>
+  return <PatrolForm />;
 };
 
 export default MopPage;
@@ -14,8 +14,8 @@ export const action = async ({ request }: { request: Request }) => {
 
   const personnelSelectValue = data.getAll("personnelSelect");
 
-  const vehicles = data.getAll('vehicleSelect');
- 
+  const vehicles = data.getAll("vehicleSelect");
+
   const VehicleValues = vehicles.toString().split(",");
   // Convert the value to a string
   const personnelValues = personnelSelectValue.toString().split(",");
@@ -24,11 +24,9 @@ export const action = async ({ request }: { request: Request }) => {
     value.trim()
   );
 
-  const addVehicleArray = VehicleValues.map((value: string) =>
-    value.trim()
-  );
+  const addVehicleArray = VehicleValues.map((value: string) => value.trim());
   const patrolDateStr: string | undefined = data.get("patrolDate") as string;
-
+  console.log("This Date: " + patrolDateStr);
   if (!patrolDateStr) {
     // Handle the case where patrolDateStr is undefined or empty
     return null;
@@ -36,18 +34,19 @@ export const action = async ({ request }: { request: Request }) => {
 
   // Split the date string into its components
   const dateParts = patrolDateStr.split("/");
-  
+
   if (dateParts.length !== 3) {
     // Handle the case where the date string doesn't have the expected format
     return null;
   }
 
-  const month = parseInt(dateParts[0]) - 1; // Months are zero-based
-  const day = parseInt(dateParts[1]);
+  const day = parseInt(dateParts[0]);
+  const month = parseInt(dateParts[1]) - 1; // Months are zero-based
   const year = parseInt(dateParts[2]);
+  // Create a new Date object with the extracted components
+  const dateObject = new Date(year, month, day);
 
-  const dateObject: Date = new Date(year, month, day);
-
+  console.log(dateObject);
   if (isNaN(dateObject.getTime())) {
     // Handle the case where the date is invalid (e.g., February 30th)
     return null;
@@ -64,7 +63,7 @@ export const action = async ({ request }: { request: Request }) => {
   // console.log(data.get("endTime"))
   // console.log(data.get("patrolMoto"))
   // console.log(data.get("selectedOption"))
-  
+
   const response = await fetch(API_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -92,5 +91,3 @@ export const action = async ({ request }: { request: Request }) => {
 
   return redirect("/mop");
 };
-
-

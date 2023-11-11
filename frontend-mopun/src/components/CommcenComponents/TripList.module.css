@@ -1,26 +1,26 @@
 
-
-
 /* TripList.css */
 .table {
   position: relative;
   z-index: 1;
   background: #FFFFFF;
   border-radius: 10px;
-  max-width: 80%;
+  max-width: 85%;
   margin: 20px auto 100px;
   text-align: center;
   border-collapse: collapse;
-  width: 80%;
+  width: 90%;
   font-size: 20px; /* Increase font size */
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
 }
 .table th{
-  padding: 5px;
+ 
   text-align: center;
   font-size:x-large;
   font-family: Georgia;
   font-weight: lighter;
+  border-style: groove;
+  background-color: slategray;
 }
  .table td {
   border-top: 4px solid #ddd; /* Only horizontal border on the right side */
@@ -35,18 +35,19 @@
   background-color: #f2f2f2;
 }
 
-.table th {
-  background-color: slategrey;
-  color: white;
-  font-weight: bold; /* Make header text bold */
-}
 
 .p{
   font-size: xx-large;
   text-align: center;
 }
 
-  
+.h1{
+  margin: auto;
+  text-align: center;
+  background-color: slategray;
+  max-width: 85%;
+}  
+
   .sort-button {
     background-color: transparent;
     border: none;
@@ -61,4 +62,18 @@
   
   .sort-reverse {
     transform: rotate(180deg);
+  }
+
+
+  .title{
+    background-color: #ddd;
+    margin-top: 20px;
+    margin-left: 45%;
+    align-items: center;
+    border:#ddd;
+    width: fit-content;
+    align-content: center;
+    border-radius: 10%;
+    border: 2px solid #ddd; /* You can adjust the border properties as needed */
+    padding: 10px; /* Optional: Add padding inside the box */
   }
