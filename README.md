@@ -45,5 +45,5 @@ app.UseCors(policy => policy.AllowAnyHeader()
 
 <div style="display: inline-block; margin-right: 20px; margin-bottom: 50px;">
   <img src="/frontend-mopun/src/images/comboard.png" alt="Image 1" width="300" height="200" style="display: block;"/>
- <img src="/frontend-mopun/src/images/cominfo.png" alt="Image 2" width="400" height="150" style="display: block;"/>
+ <img src="/frontend-mopun/src/images/cominfo.png" alt="Image 2" width="300" height="200" style="display: block;"/>
 </div>
