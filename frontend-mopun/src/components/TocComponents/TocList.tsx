@@ -21,14 +21,13 @@ const TocList = () => {
 
         const currentTime = new Date();
 
-
         const colors = result.map((item: any) => {
         
           
           const isActive: boolean = item[DataTypeKeys.Active];
           if(!isActive){
 
-            return "blue";
+            return "orange";
           }
           else{
 

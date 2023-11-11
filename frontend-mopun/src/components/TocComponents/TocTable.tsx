@@ -12,12 +12,14 @@ interface TripTableProps {
 const TocTable: React.FC<TripTableProps> = ({ data, columnColors, onRowClick }) => {
   const headers = [
     { key: DataTypeKeys.CallSign, label: "Call Sign" },
+    { key: "PAX", label: "PAX"},
     { key: DataTypeKeys.Reason, label: "Reason" },
     { key: DataTypeKeys.MotoId, label: "Moto ID" },
     { key: DataTypeKeys.LastLocation, label: "Location" },
     { key: DataTypeKeys.Priority, label: "Priority" },
     { key: 'Status', label: "Status" },
-    { key: DataTypeKeys.LastTime, label: "Last Update" },
+    { key: DataTypeKeys.startTime, label: "Start Time" },
+    {key: DataTypeKeys.LastTime, label: "Last Update"},
     { key: DataTypeKeys.ActiveDate, label: "Activated On" },
   ];
 
@@ -34,22 +36,26 @@ const TocTable: React.FC<TripTableProps> = ({ data, columnColors, onRowClick }) 
     colorIndices[color].push(index);
   });
 
-  const blueIndices = colorIndices["blue"] || [];
+  const blueIndices = colorIndices["orange"] || [];
   const activeIndices: number[] = [];
 
   // Retrieve indices for colors other than "blue"
   Object.keys(colorIndices).forEach((color) => {
-    if (color !== "blue") {
+    if (color !== "orange") {
       activeIndices.push(...colorIndices[color]);
     }
   });
 
   return (
     <>
-      <div>
-        <h1 className={classes.h1}>Active</h1>
+   
+       
+    
         <table className={classes.table}>
           <thead>
+            <tr>
+            <h1 className={classes.h1}>Active</h1>
+            </tr>
             <tr>
               {headers.map((header, index) => (
                 <th key={index}>{header.label}</th>
@@ -67,9 +73,7 @@ const TocTable: React.FC<TripTableProps> = ({ data, columnColors, onRowClick }) 
             ))}
           </tbody>
         </table>
-      </div>
-
-      <div>
+     
         <h1 className={classes.h1}>PENDING</h1>
         <table className={classes.table}>
           <thead>
@@ -90,7 +94,7 @@ const TocTable: React.FC<TripTableProps> = ({ data, columnColors, onRowClick }) 
             ))}
           </tbody>
         </table>
-      </div>
+
     </>
   );
 };

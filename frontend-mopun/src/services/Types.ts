@@ -6,6 +6,7 @@ export enum DataTypeKeys {
     LastLocation = "lastlocation",
     MotoId = "motoId",
     LastTime = "lastTimeUpdate",
+    startTime = "startTime",
     ActiveDate = "lastDateUpdate",
     Priority = "priority",
     InCamp = "inCamp",
@@ -24,4 +25,5 @@ export enum DataTypeKeys {
     [DataTypeKeys.ActiveDate]: Date;
     [DataTypeKeys.Active]: boolean;
     [DataTypeKeys.InCamp]: boolean;
+    [DataTypeKeys.startTime]: string;
   };
